@@ -3,6 +3,7 @@ import '@/styles/globals.css';
 import type { Metadata, Viewport } from 'next';
 import { IGRPRootLayout } from '@igrp/framework-next';
 import { IGRP_META_THEME_COLORS } from '@igrp/igrp-framework-react-design-system';
+import QueryProvider from './QueryProvider';
 
 import { configLayout } from '@/actions/igrp/layout';
 import { createConfig } from '@/igrp.template.config';
@@ -21,5 +22,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const layoutConfig = await configLayout();
   const config = await createConfig(layoutConfig);
 
-  return <IGRPRootLayout config={config}>{children}</IGRPRootLayout>;
+  return (
+    <QueryProvider>
+      <IGRPRootLayout config={config}>{children}</IGRPRootLayout>
+    </QueryProvider>
+  );
 }

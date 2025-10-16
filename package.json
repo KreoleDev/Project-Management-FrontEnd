@@ -27,6 +27,7 @@
     "@igrp/igrp-framework-react-design-system": "0.1.0-beta.17",
     "@igrp/platform-access-management-client-ts": "0.1.0-beta.26",
     "class-variance-authority": "^0.7.1",
+     "@tanstack/react-query": "^5.84.2",
     "clsx": "^2.1.1",
     "js-cookie": "^3.0.5",
     "nanoid": "^5.1.5",

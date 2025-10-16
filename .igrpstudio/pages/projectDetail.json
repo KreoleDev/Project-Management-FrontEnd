@@ -1,0 +1,1 @@
+{"type":"page","pageName":"projectDetail","path":"project/[uuid]","description":"Project Detail","forceDynamic":false,"id":"rqchktitz5","types":[],"states":[],"functions":[],"parentName":"project","args":[{"id":"oohvzz06xf","type":"string","name":"uuid","isList":false,"isOptional":false,"isInterface":false,"isFunction":false,"isState":false}]}

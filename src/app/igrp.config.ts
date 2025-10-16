@@ -44,6 +44,9 @@
 export default {
   types: [],
   actions: [],
-  functions: [],
+  functions: [
+    'functions/project',
+    'hooks/project'
+  ],
   components: []
 };
