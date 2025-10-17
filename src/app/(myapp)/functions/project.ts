@@ -124,23 +124,74 @@ export const sampleProjects: Project[] = [
     buiNumber: "BUI-2015-001",
     projectName: "Freexauto",
     promoter: "Carlos Graça",
-    promoterGender: "Male",
+    promoterGender: "Masculino",
     promotingCompany: "Freexauto, Lda",
-    activity: "Car Rental, Sales and Vehicle Repair",
+    activity: "Aluguer de Carros, Vendas e Reparação de Veículos",
     investment: 373229,
     employment: 24,
-    sector: "Services",
+    sector: "Serviços",
     location: "Achada Grande - Praia",
     island: "Santiago",
     capitalOrigin: "Portugal",
     investmentOrigin: "Portugal",
     nif: 12345678955,
-    buiPlatformStage: "Approved",
-    approvalYear: 2015,
+    buiPlatformStage: "Aprovado",
+    approvalYear: "2015-02-03",
     certificateNumber: "No. 002/CRI/2015",
+    publicationDateBo: "2015-06-01",
+    referenceBo: "BO/2015/002",
     email: "freexauto@freexauto.com",
     phone: "351231442932",
-    status: "Operational",
+    status: "Em Funcionamento",
+    createdAt: "2015-04-15T10:00:00Z",
+    updatedAt: "2024-10-10T12:00:00Z",
+    phases: [
+      {
+        id: "p1",
+        phaseName: "Desenvolvimento",
+        phaseOrder: 1,
+        requirements: "Estudo de Viabilidade, Aprovação das Autoridades",
+        completionPercentage: 100,
+        startedAt: "2014-01-10",
+        completedAt: "2014-12-15",
+        createdAt: "2014-01-10",
+        indicators: {
+          projectPrepared: true,
+          projectApproved: true,
+          licensingCompleted: true
+        }
+      },
+      {
+        id: "p2",
+        phaseName: "Implementation",
+        phaseOrder: 2,
+        completionPercentage: 100,
+        startedAt: "2015-01-01",
+        completedAt: "2015-06-01",
+        createdAt: "2015-01-01",
+        indicators: {
+          constructionProgress: "100%",
+          equipmentInstallation: true,
+          inspectionCompleted: true,
+          operationLicenseGranted: true
+        }
+      }
+    ],
+    documents: [
+      {
+        name: "Feasibility Study.pdf",
+        description: "Detailed analysis of the project's feasibility."
+      },
+      {
+        name: "Environmental Report.pdf",
+        description: "Assessment of the project's environmental impact."
+      },
+      {
+        name: "Financial Plan.pdf",
+        description: "Comprehensive financial plan for Freexauto."
+      }
+    ],
+    comments: ["Proposta enviada.", "Aguardando decisão de financiamento.", "Visita ao local agendada para a próxima semana."]
   },
   {
     id: "2",
@@ -148,22 +199,71 @@ export const sampleProjects: Project[] = [
     buiNumber: "BUI-2024-002",
     projectName: "Hotel Paradise",
     promoter: "Maria Silva",
-    promoterGender: "Female",
+    promoterGender: "Feminino",
     promotingCompany: "Paradise Hotels, SA",
-    activity: "Hospitality and Tourism",
+    activity: "Hospitalidade e Turismo",
     investment: 2500000,
     employment: 85,
-    sector: "Tourism",
+    sector: "Turismo",
     location: "Santa Maria - Sal",
     island: "Sal",
-    capitalOrigin: "Cape Verde",
-    investmentOrigin: "Cape Verde",
+    capitalOrigin: "Cabo Verde",
+    investmentOrigin: "Cabo Verde",
     nif: 1234566789,
-    buiPlatformStage: "Under Review",
-    approvalYear: 2024,
+    buiPlatformStage: "Aprovado",
+    approvalYear: "2024-02-03",
+    certificateNumber: "No. 004/CRI/2024",
+    publicationDateBo: "2024-03-22",
+    referenceBo: "BO/2024/004",
     email: "info@paradisehotels.cv",
     phone: "238123456",
-    status: "Under Implementation",
+    status: "Em Desenvolvimento",
+    createdAt: "2024-03-01T09:00:00Z",
+    updatedAt: "2025-02-10T15:00:00Z",
+    phases: [
+      {
+        id: "p3",
+        phaseName: "Financiamento",
+        phaseOrder: 1,
+        completionPercentage: 100,
+        startedAt: "2023-05-01",
+        completedAt: "2023-08-10",
+        createdAt: "2023-05-01",
+        indicators: {
+          fundingDecision: "Aprovado",
+          bankNegotiation: "Concluído",
+          creditContracting: "Concluído"
+        }
+      },
+      {
+        id: "p4",
+        phaseName: "Implementação",
+        phaseOrder: 2,
+        completionPercentage: 65,
+        startedAt: "2024-01-01",
+        createdAt: "2024-01-01",
+        indicators: {
+          constructionProgress: "31-70%",
+          equipmentInstallation: false,
+          inspectionCompleted: false
+        }
+      }
+    ],
+    documents: [
+        {
+            name: "Projeto_Arquitetonico.pdf",
+            description: "Projeto arquitetônico detalhado."
+        },
+        {
+            name: "Plano_de_Negocios.pdf",
+            description: "Plano de negócios completo para o Hotel Paradise."
+        },
+        {
+            name: "Estudo_de_Impacto_Ambiental.pdf",
+            description: "Análise dos impactos ambientais do projeto."
+        }
+    ],
+    comments: ["Projeto inicial aprovado.", "Aguardando liberação ambiental."]
   },
   {
     id: "3",
@@ -171,21 +271,71 @@ export const sampleProjects: Project[] = [
     buiNumber: "BUI-2024-003",
     projectName: "Mindelo Solar Energy",
     promoter: "João Santos",
-    promoterGender: "Male",
+    promoterGender: "Masculino",
     promotingCompany: "Green Energy CV",
-    activity: "Renewable Energy",
+    activity: "Energia Renovável",
     investment: 1200000,
     employment: 15,
-    sector: "Energy",
+    sector: "Energia",
     location: "Mindelo",
     island: "São Vicente",
     capitalOrigin: "Portugal",
     investmentOrigin: "Portugal",
     nif: 123456789,
-    buiPlatformStage: "Pending",
-    approvalYear: 2024,
+    buiPlatformStage: "Em Análise",
+    approvalYear: "2024-02-03",
+    certificateNumber: "No. 005/CRI/2024",
+    publicationDateBo: "2024-07-15",
+    referenceBo: "BO/2024/005",
     email: "joao@greenenergy.cv",
     phone: "238987654",
-    status: "Seeking Funding",
-  },
+    status: "Em Implementação",
+    createdAt: "2024-07-01T08:00:00Z",
+    updatedAt: "2025-01-15T10:00:00Z",
+    phases: [
+      {
+        id: "p5",
+        phaseName: "Desenvolvimento",
+        phaseOrder: 1,
+        requirements: "Aprovação do Local, Licença Ambiental",
+        completionPercentage: 100,
+        startedAt: "2023-12-10",
+        completedAt: "2024-01-30",
+        createdAt: "2023-12-10",
+        indicators: {
+          projectPrepared: true,
+          projectApproved: true,
+          licensingCompleted: true
+        }
+      },
+      {
+        id: "p6",
+        phaseName: "Funding",
+        phaseOrder: 2,
+        completionPercentage: 40,
+        startedAt: "2024-02-01",
+        createdAt: "2024-02-01",
+        indicators: {
+          fundingDecision: "Pendente",
+          bankNegotiation: "Em Progresso",
+          creditContracting: "Não Iniciado"
+        }
+      }
+    ],
+    documents: [
+      {
+        name: "Relatório de Viabilidade.pdf",
+        description: "Relatório detalhado sobre a viabilidade do projeto de energia solar em Mindelo."
+      },
+      {
+        name: "Relatório de Viabilidade.pdf",
+        description: "Relatório detalhado sobre a viabilidade do projeto de energia solar em Mindelo."
+      },
+      {
+        name: "Relatório Ambiental.pdf",
+        description: "Relatório sobre os impactos ambientais do projeto de energia solar em Mindelo."
+      }
+    ],
+    comments: ["Proposta inicial enviada.", "Aguardando decisão de financiamento.", "Visita ao local agendada para a próxima semana."]
+  }
 ];

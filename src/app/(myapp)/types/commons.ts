@@ -16,26 +16,34 @@ export interface Project {
   investmentOrigin?: string;
   nif?: number;
   buiPlatformStage?: string;
-  approvalYear?: number;
+  approvalYear?: string;
   certificateNumber?: string;
   publicationDateBo?: string;
   referenceBo?: string;
   email?: string;
   phone?: string;
   status: ProjectStatus;
+  updatedAt: string;
+  createdAt: string;
+  phases?: ProjectPhase[];
+  documents?: Documents[];
+  comments?: string[];
 }
 
+export interface Documents{
+    name: string;
+    description?: string;
+}
 export type ProjectStatus =
-  | "In Development"
-  | "Seeking Funding"
-  | "Under Implementation"
-  | "Operational"
-  | "Approved"
-  | "Rejected";
+  | "Em Desenvolvimento"
+  | "Em Procura de Financiamento"
+  | "Em Implementação"
+  | "Em Funcionamento"
+  | "Aprovado"
+  | "Rejeitado"
 
 export interface ProjectPhase {
-  id: number;
-  projectId: number;
+  id: string;
   phaseName: string;
   phaseOrder: number;
   requirements?: string;
@@ -53,9 +61,9 @@ export interface PhaseIndicators {
   licensingCompleted?: boolean;
 
   // Funding indicators
-  fundingDecision?: "Pending" | "Approved" | "Rejected";
-  bankNegotiation?: "Not Started" | "In Progress" | "Completed";
-  creditContracting?: "Not Started" | "In Progress" | "Completed";
+  fundingDecision?: "Pendente" | "Aprovado" | "Rejeitado";
+  bankNegotiation?: "Não Iniciado" | "Em Progresso" | "Concluído";
+  creditContracting?: "Não Iniciado" | "Em Progresso" | "Concluído";
 
   // Implementation indicators
   constructionProgress?: "1-30%" | "31-70%" | "71-99%" | "100%";
@@ -69,24 +77,9 @@ export interface PhaseIndicators {
   jobsPlanned?: number;
   jobsCreated?: number;
   reinvestmentPlan?: string;
-  reinvestmentTerm?: "Short Term" | "Medium Term" | "Long Term";
+  reinvestmentTerm?: "Curto Prazo" | "Médio Prazo" | "Longo Prazo";
 }
 
-export interface ProjectDocument {
-  id: number;
-  projectId: number;
-  documentName: string;
-  documentType?: string;
-  filePath?: string;
-  uploadedAt: string;
-}
-
-export interface ProjectComment {
-  id: number;
-  projectId: number;
-  comment: string;
-  createdAt: string;
-}
 
 
 export interface PaginatedResponse<T> {
