@@ -33,6 +33,7 @@ export default function PageProjectdetailComponent({ params } : { params: Promis
   const { uuid } = use(params);
 
   const [tabstabs1Items, setTabstabs1Items] = useState<IGRPTabItem[]>([]);
+  const [repetitiveListrepetitiveList2, setRepetitiveListrepetitiveList2] = useState<any[]>([]);
   const [repetitiveListrepetitiveList1, setRepetitiveListrepetitiveList1] = useState<any[]>([]);
   
   
@@ -153,6 +154,7 @@ useEffect(() => {
 
   //setComments(data.comments)
   setRepetitiveListrepetitiveList1(data.documents || [])
+  setRepetitiveListrepetitiveList2(data.phases || [])
 
 
 
@@ -835,6 +837,247 @@ maxLines={ 3 }
           label: `Fazes do Projeto`,
           icon: `ArrowRight`,
 content: (<>
+            <IGRPCard
+  name={ `card6` }
+  
+  
+  
+>
+  <IGRPCardHeader
+  className={ cn() }
+  
+>
+  <div className={ cn('flex','justify-between',)}    >
+	<IGRPText
+  name={ `text36` }
+  variant={ `primary` }
+weight={ `semibold` }
+size={ `lg` }
+align={ `left` }
+spacing={ `normal` }
+maxLines={ 3 }
+  className={ cn() }
+  
+  
+>
+  Fases do Projeto
+</IGRPText>
+<IGRPButton
+  name={ `button5` }
+  variant={ `outline` }
+size={ `default` }
+showIcon={ true }
+iconName={ `Plus` }
+  className={ cn() }
+  onClick={ () => {} }
+  
+>
+  Nova Fase
+</IGRPButton></div>
+</IGRPCardHeader>
+  <IGRPCardContent
+  className={ cn('space-x-3','space-y-3',) }
+  
+>
+  <IGRPRepetitiveComponent<any>
+  keyExtractor={ (item) => item.id }
+  items={ repetitiveListrepetitiveList2 }
+>
+{ (item) =>
+  <>
+  <div className={ cn('flex','justify-between','flex flex-row flex-nowrap items-center justify-between gap-2',)}    >
+	<IGRPText
+  name={ `text37` }
+  variant={ `success` }
+weight={ `normal` }
+size={ `default` }
+align={ `left` }
+spacing={ `none` }
+maxLines={ `0` }
+  className={ cn() }
+  
+  
+>
+  { item.phaseName }
+</IGRPText>
+<div className={ cn('flex flex-row flex-nowrap items-center justify-end gap-2',)}    >
+	<IGRPBadge
+  name={ `badge3` }
+  color={ `success` }
+variant={ `outline` }
+size={ `md` }
+showIcon={ false }
+iconName={ `Info` }
+iconPlacement={ `start` }
+  badgeClassName={ cn() }
+  
+  
+>
+  { item.status }
+</IGRPBadge>
+<IGRPButton
+  name={ `button6` }
+  variant={ `outline` }
+size={ `sm` }
+showIcon={ true }
+iconName={ `SquarePen` }
+  className={ cn() }
+  onClick={ () => {} }
+  
+>
+  Editar Fase
+</IGRPButton></div></div>
+  <div className={ cn('pl-8',)}    >
+	<IGRPText
+  name={ `text39` }
+  variant={ `primary` }
+weight={ `normal` }
+size={ `default` }
+align={ `left` }
+spacing={ `normal` }
+maxLines={ 3 }
+  className={ cn() }
+  
+  
+>
+  { item.requirements }
+</IGRPText>
+<div className={ cn('flex','flex flex-row flex-nowrap items-center justify-start gap-2',)}    >
+	<IGRPText
+  name={ `text38` }
+  variant={ `primary` }
+weight={ `semibold` }
+size={ `default` }
+align={ `left` }
+spacing={ `none` }
+maxLines={ 3 }
+  className={ cn() }
+  
+  
+>
+  Progresso: 
+</IGRPText>
+<IGRPText
+  name={ `text44` }
+  variant={ `primary` }
+weight={ `normal` }
+size={ `default` }
+align={ `left` }
+spacing={ `none` }
+maxLines={ `0` }
+  className={ cn() }
+  
+  
+>
+  { item.completionPercentage }
+</IGRPText>
+<IGRPText
+  name={ `text40` }
+  variant={ `primary` }
+weight={ `normal` }
+size={ `default` }
+align={ `left` }
+spacing={ `none` }
+maxLines={ 3 }
+  className={ cn() }
+  
+  
+>
+  %
+</IGRPText></div>
+<div className={ cn('flex',)}    >
+	<IGRPText
+  name={ `text41` }
+  variant={ `primary` }
+weight={ `semibold` }
+size={ `default` }
+align={ `left` }
+spacing={ `none` }
+maxLines={ 3 }
+  className={ cn('me-2',) }
+  
+  
+>
+  Financiamento:    
+</IGRPText>
+<IGRPText
+  name={ `text42` }
+  variant={ `primary` }
+weight={ `normal` }
+size={ `default` }
+align={ `left` }
+spacing={ `none` }
+maxLines={ 3 }
+  
+  
+>
+  { item.indicators.fundingDecision }
+</IGRPText></div>
+<div className={ cn('flex',)}    >
+	<IGRPText
+  name={ `text45` }
+  variant={ `primary` }
+weight={ `semibold` }
+size={ `default` }
+align={ `left` }
+spacing={ `none` }
+maxLines={ 3 }
+  
+  
+>
+  Negociação Bancária:
+</IGRPText>
+<IGRPText
+  name={ `text43` }
+  variant={ `primary` }
+weight={ `normal` }
+size={ `default` }
+align={ `left` }
+spacing={ `none` }
+maxLines={ 3 }
+  
+  
+>
+  { item.indicators.bankNegotiation }
+</IGRPText></div>
+<div className={ cn('flex',)}    >
+	<IGRPText
+  name={ `text47` }
+  variant={ `primary` }
+weight={ `semibold` }
+size={ `default` }
+align={ `left` }
+spacing={ `none` }
+maxLines={ 3 }
+  
+  
+>
+  Crédito:
+</IGRPText>
+<IGRPText
+  name={ `text46` }
+  variant={ `primary` }
+weight={ `normal` }
+size={ `default` }
+align={ `left` }
+spacing={ `none` }
+maxLines={ 3 }
+  
+  
+>
+  { item.indicators.creditContracting }
+</IGRPText></div></div>
+</>
+}
+</IGRPRepetitiveComponent>
+
+</IGRPCardContent>
+  <IGRPCardFooter
+  className={ cn() }
+  
+>
+</IGRPCardFooter>
+</IGRPCard>
 </>),
         },
         {

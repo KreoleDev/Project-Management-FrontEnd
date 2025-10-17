@@ -52,6 +52,7 @@ export interface ProjectPhase {
   completedAt?: string;
   createdAt: string;
   indicators?: PhaseIndicators;
+  status?: string
 }
 
 export interface PhaseIndicators {
