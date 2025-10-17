@@ -157,9 +157,9 @@ export const sampleProjects: Project[] = [
         completedAt: "2014-12-15",
         createdAt: "2014-01-10",
         indicators: {
-          projectPrepared: true,
-          projectApproved: true,
-          licensingCompleted: true
+          fundingDecision: "Pendente",
+          bankNegotiation: "Em Progresso",
+          creditContracting: "Não Iniciado"
         }
       },
       {
@@ -250,9 +250,9 @@ export const sampleProjects: Project[] = [
         startedAt: "2024-01-01",
         createdAt: "2024-01-01",
         indicators: {
-          constructionProgress: "31-70%",
-          equipmentInstallation: false,
-          inspectionCompleted: false
+           fundingDecision: "Pendente",
+           bankNegotiation: "Em Progresso",
+           creditContracting: "Não Iniciado"
         }
       }
     ],
@@ -311,9 +311,9 @@ export const sampleProjects: Project[] = [
         completedAt: "2024-01-30",
         createdAt: "2023-12-10",
         indicators: {
-          projectPrepared: true,
-          projectApproved: true,
-          licensingCompleted: true
+           fundingDecision: "Pendente",
+          bankNegotiation: "Em Progresso",
+          creditContracting: "Não Iniciado"
         }
       },
       {
