@@ -10,6 +10,8 @@ import { use, useState, useEffect, useRef } from 'react';
 import { cn, useIGRPMenuNavigation, useIGRPToast } from '@igrp/igrp-framework-react-design-system';
 import {ProjectProgress} from '@/app/(myapp)/components/project-progress'
 import DetailCard from '@/app/(igrp)/(generated)/project/components/detailcard'
+import StatusChange from '@/app/(igrp)/(generated)/project/components/statuschange'
+import PhaseCard from '@/app/(igrp)/(generated)/project/components/phasecard'
 import { 
   IGRPPageHeader,
 	IGRPButton,
@@ -26,6 +28,7 @@ import {
 	IGRPIcon 
 } from "@igrp/igrp-framework-react-design-system";
 import {useDetailProject} from '@/app/(myapp)/hooks/project'
+import { useRouter } from "next/navigation";
 
 
 export default function PageProjectdetailComponent({ params } : { params: Promise<{ uuid: string }> } ) {
@@ -109,12 +112,31 @@ const [bankNegotiation, setBankNegotiation] = useState<string>(undefined);
 
 const [creditContracting, setCreditContracting] = useState<string>(undefined);
 
+const [progress, setProgress] = useState<number>(undefined);
+
+const [openStatusModal, setOpenStatusModal] = useState<boolean>(undefined);
+
+const [currentData, setCurrentData] = useState<any>(undefined);
+
+const [statusDesc, setStatusDesc] = useState<string>(undefined);
+
+const [openPhaseModal, setOpenPhaseModal] = useState<boolean>(undefined);
+
 const { igrpToast } = useIGRPToast()
+
+const router = useRouter()
+
+function editProject (uuid: string): void  | undefined {
+
+  router.push(`project/${uuid}/id`)
+
+}
 
 const {data} = useDetailProject(uuid);
 
 useEffect(() => {
   if(!data) return;
+  setCurrentData(data)
 
   setProcessNumber(data.processNumber ? `Processo Nº ${data.processNumber}` : "")
   setBuiNumber(data.buiNumber)
@@ -139,6 +161,10 @@ useEffect(() => {
   setEmail(data.email)
   setPhone(data.phone)
   setStatus(data.status)
+  setStatusDesc(data.statusDesc)
+
+  setProgress(data.progress)
+
   setCreatedAt(data.createdAt)
   setUpdatedAt(data.updatedAt)
 
@@ -159,6 +185,10 @@ useEffect(() => {
 
 
 },[data])
+
+function goToeditProject (row?: any): void {
+  router.push(`/project/${uuid}/edit`);
+}
 
 
   return (
@@ -181,7 +211,10 @@ size={ `sm` }
 showIcon={ true }
 iconName={ `RefreshCcw` }
   className={ cn() }
-  onClick={ () => {} }
+  onClick={ () => {setOpenStatusModal(!openStatusModal); setCurrentData(currentData)
+
+
+} }
   
 >
   Alterar Status
@@ -193,7 +226,7 @@ size={ `sm` }
 showIcon={ true }
 iconName={ `SquarePen` }
   className={ cn() }
-  onClick={ () => {} }
+  onClick={ () => goToeditProject() }
   
 >
   Editar
@@ -227,7 +260,7 @@ iconPlacement={ `start` }
   
   
 >
-  { status }
+  { statusDesc }
 </IGRPBadge>
 <div className={ cn()}    >
 	<IGRPText
@@ -256,7 +289,7 @@ maxLines={ `0` }
 >
   { updatedAt }
 </IGRPText></div></div>
-<ProjectProgress    ></ProjectProgress>
+<ProjectProgress  value={ progress } label={ statusDesc }   ></ProjectProgress>
 <div className={ cn('grid','grid-cols-1 ','md:grid-cols-2 ','lg:grid-cols-4 ','grid grid grid-cols-4 grid-rows-1 gap-2 justify-items-stretch items-start',' gap-4 w-full',)}    >
 	<DetailCard  icon={ `Euro` } title={ `Investimento` } count={ investment }   ></DetailCard>
 <DetailCard  icon={ `Users` } title={ `Empregos` } count={ employment }   ></DetailCard>
@@ -863,7 +896,8 @@ size={ `default` }
 showIcon={ true }
 iconName={ `Plus` }
   className={ cn() }
-  onClick={ () => {} }
+  onClick={ () => {setOpenPhaseModal(!openPhaseModal)
+} }
   
 >
   Nova Fase
@@ -916,7 +950,9 @@ size={ `sm` }
 showIcon={ true }
 iconName={ `SquarePen` }
   className={ cn() }
-  onClick={ () => {} }
+  onClick={ () => {setOpenPhaseModal(!openPhaseModal); setCurrentData(currentData)
+
+} }
   
 >
   Editar Fase
@@ -936,57 +972,15 @@ maxLines={ 3 }
 >
   { item.requirements }
 </IGRPText>
-<div className={ cn('flex','flex flex-row flex-nowrap items-center justify-start gap-2',)}    >
-	<IGRPText
-  name={ `text38` }
-  variant={ `primary` }
-weight={ `semibold` }
-size={ `default` }
-align={ `left` }
-spacing={ `none` }
-maxLines={ 3 }
-  className={ cn() }
-  
-  
->
-  Progresso: 
-</IGRPText>
-<IGRPText
-  name={ `text44` }
-  variant={ `primary` }
-weight={ `normal` }
-size={ `default` }
-align={ `left` }
-spacing={ `none` }
-maxLines={ `0` }
-  className={ cn() }
-  
-  
->
-  { item.completionPercentage }
-</IGRPText>
-<IGRPText
-  name={ `text40` }
-  variant={ `primary` }
-weight={ `normal` }
-size={ `default` }
-align={ `left` }
-spacing={ `none` }
-maxLines={ 3 }
-  className={ cn() }
-  
-  
->
-  %
-</IGRPText></div>
-<div className={ cn('flex',)}    >
+<ProjectProgress  label={ `Progresso` } value={ item.completionPercentage }   ></ProjectProgress>
+<div className={ cn('flex','mt-5',)}    >
 	<IGRPText
   name={ `text41` }
   variant={ `primary` }
 weight={ `semibold` }
 size={ `default` }
 align={ `left` }
-spacing={ `none` }
+spacing={ `normal` }
 maxLines={ 3 }
   className={ cn('me-2',) }
   
@@ -1000,8 +994,9 @@ maxLines={ 3 }
 weight={ `normal` }
 size={ `default` }
 align={ `left` }
-spacing={ `none` }
+spacing={ `normal` }
 maxLines={ 3 }
+  className={ cn() }
   
   
 >
@@ -1014,7 +1009,7 @@ maxLines={ 3 }
 weight={ `semibold` }
 size={ `default` }
 align={ `left` }
-spacing={ `none` }
+spacing={ `normal` }
 maxLines={ 3 }
   
   
@@ -1027,7 +1022,7 @@ maxLines={ 3 }
 weight={ `normal` }
 size={ `default` }
 align={ `left` }
-spacing={ `none` }
+spacing={ `normal` }
 maxLines={ 3 }
   
   
@@ -1041,7 +1036,7 @@ maxLines={ 3 }
 weight={ `semibold` }
 size={ `default` }
 align={ `left` }
-spacing={ `none` }
+spacing={ `normal` }
 maxLines={ 3 }
   
   
@@ -1054,7 +1049,7 @@ maxLines={ 3 }
 weight={ `normal` }
 size={ `default` }
 align={ `left` }
-spacing={ `none` }
+spacing={ `normal` }
 maxLines={ 3 }
   
   
@@ -1182,6 +1177,8 @@ content: (<>
         },
 ]
   }
-/></div></div></div>
+/></div></div>
+<StatusChange  openModal={ openStatusModal } initialStatus={ status } initialData={ currentData }   ></StatusChange>
+<PhaseCard  openModal={ openPhaseModal } initialData={ currentData }   ></PhaseCard></div>
   );
 }

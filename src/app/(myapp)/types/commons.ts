@@ -22,7 +22,9 @@ export interface Project {
   referenceBo?: string;
   email?: string;
   phone?: string;
-  status: ProjectStatus;
+  status: string ;
+  statusDesc?: string ;
+  progress?: number;
   updatedAt: string;
   createdAt: string;
   phases?: ProjectPhase[];
@@ -34,13 +36,7 @@ export interface Documents{
     name: string;
     description?: string;
 }
-export type ProjectStatus =
-  | "Em Desenvolvimento"
-  | "Em Procura de Financiamento"
-  | "Em Implementação"
-  | "Em Funcionamento"
-  | "Aprovado"
-  | "Rejeitado"
+
 
 export interface ProjectPhase {
   id: string;

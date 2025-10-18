@@ -30,6 +30,7 @@ import {
 	IGRPInputFile,
 	IGRPDatePicker 
 } from "@igrp/igrp-framework-react-design-system";
+import {useProjectConfiguration} from '@/app/(myapp)/hooks/project'
 
 export default function Formproject({ initialData, isSubmitting, onAfterSubmit } : { initialData: any, isSubmitting: boolean, onAfterSubmit: () => void }) {
 
@@ -57,7 +58,7 @@ export default function Formproject({ initialData, isSubmitting, onAfterSubmit }
     referenceBo: z.string().optional(),
     approvalYear: z.string().optional(),
     publicationDateBo: z.string().optional(),
-    combobox7: z.string().optional()
+    buiPlatformStage: z.string().optional()
 })
 
 type Form1ZodType = typeof form1;
@@ -85,7 +86,7 @@ const initForm1: z.infer<Form1ZodType> = {
     referenceBo: undefined,
     approvalYear: undefined,
     publicationDateBo: undefined,
-    combobox7: undefined
+    buiPlatformStage: undefined
 }
 
 
@@ -99,12 +100,29 @@ const initForm1: z.infer<Form1ZodType> = {
   const [selectinvestmentOriginOptions, setSelectinvestmentOriginOptions] = useState<IGRPOptionsProps[]>([]);
   const [selectislandOptions, setSelectislandOptions] = useState<IGRPOptionsProps[]>([]);
   const [formListformList1Default, setFormListformList1Default] = useState<any>({});
-  const [selectcombobox7Options, setSelectcombobox7Options] = useState<IGRPOptionsProps[]>([]);
+  const [selectbuiPlatformStageOptions, setSelectbuiPlatformStageOptions] = useState<IGRPOptionsProps[]>([]);
   
 const { igrpToast } = useIGRPToast()
 
+const {projectStatusOptions,
+       capitalOriginOptions,
+       investmentOriginOptions,
+       sectorOptions,
+       island,
+       promoterGenderOptions,
+       buiPlatformStageOptions
+       } = useProjectConfiguration();
 
 useEffect(() => {
+  setSelectpromoterGenderOptions([])
+  setSelectstatusOptions(projectStatusOptions || [])
+  setSelectsectorOptions(sectorOptions || [])
+  setSelectcapitalOriginOptions(capitalOriginOptions || [])
+  setSelectinvestmentOriginOptions(investmentOriginOptions || [])
+  setSelectislandOptions(island || [])
+  setSelectpromoterGenderOptions(promoterGenderOptions || [])
+  setSelectbuiPlatformStageOptions(buiPlatformStageOptions || [])
+
   if (initialData)
    setForm1Data(initialData)
 }, [initialData])
@@ -667,17 +685,18 @@ required={ true }
   
 />
   <IGRPCombobox
-  name={ `combobox7` }
+  name={ `buiPlatformStage` }
   label={ `Etapa na Plataforma BUI` }
 variant={ `single` }
 placeholder={ `Select an option...` }
+required={ undefined }
 selectLabel={ `No option found` }
 showSearch={ true }
 showIcon={ false }
 iconName={ `CornerDownRight` }
   className={ cn('',) }
   onChange={ () => {} }
-  options={ selectcombobox7Options }
+  options={ selectbuiPlatformStageOptions }
 >
 </IGRPCombobox>
 </IGRPCardContent>

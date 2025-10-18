@@ -42,7 +42,7 @@ export default function PageProjectComponent() {
     island: string;
     investment: number;
     employment: number;
-    status: string;
+    statusDesc: string;
     id: string;
 }
 
@@ -277,13 +277,13 @@ iconName={ `X` }
         },
         {
           header: 'Status'
-,accessorKey: 'status',
+,accessorKey: 'statusDesc',
           cell: ({ row }) => {
           const rowData = row.original;
 
 
 return <IGRPDataTableCellBadge
-  label={ row.original.status }
+  label={ row.original.statusDesc }
   variant={ `soft` }
 badgeClassName={ `` }
 >

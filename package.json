@@ -26,7 +26,6 @@
     "@igrp/framework-next-ui": "0.1.0-beta.25",
     "@igrp/igrp-framework-react-design-system": "0.1.0-beta.25",
     "@igrp/platform-access-management-client-ts": "0.1.0-beta.26",
-    "@radix-ui/react-progress": "^1.1.7",
     "@tanstack/react-query": "^5.84.2",
     "@types/leaflet": "^1.9.21",
     "class-variance-authority": "^0.7.1",
