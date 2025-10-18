@@ -11,6 +11,7 @@ import { cn, useIGRPMenuNavigation, useIGRPToast } from '@igrp/igrp-framework-re
 import { IGRPFormHandle } from "@igrp/igrp-framework-react-design-system";
 import { z } from "zod"
 import { IGRPOptionsProps } from "@igrp/igrp-framework-react-design-system";
+import {MapClick} from '@/app/(myapp)/components/MapClick'
 import { 
   IGRPForm,
 	IGRPTabs,
@@ -397,20 +398,21 @@ iconName={ `MapPin` }
 </IGRPHeadline>
 </IGRPCardHeader>
   <IGRPCardContent
-  className={ cn('','space-x-3','space-y-3','grid grid grid-cols-2 grid-rows-1 gap-2 justify-items-stretch items-start',) }
+  className={ cn('','space-x-3','space-y-3',) }
   
 >
-  <IGRPInputText
+  <div className={ cn('grid','grid-cols-2 ','md:grid-cols-2 ',' gap-4',)}    >
+	<IGRPInputText
   name={ `location` }
   label={ `Localização Especifica` }
 showIcon={ false }
 required={ true }
-  className={ cn('',) }
+  className={ cn('col-span-1',) }
   
   
 >
 </IGRPInputText>
-  <IGRPCombobox
+<IGRPCombobox
   name={ `island` }
   label={ `Ilha` }
 variant={ `single` }
@@ -420,11 +422,12 @@ selectLabel={ `No option found` }
 showSearch={ true }
 showIcon={ false }
 iconName={ `CornerDownRight` }
-  className={ cn('',) }
+  className={ cn('col-span-1',) }
   onChange={ () => {} }
   options={ selectislandOptions }
 >
-</IGRPCombobox>
+</IGRPCombobox></div>
+  <MapClick    ></MapClick>
 </IGRPCardContent>
   <IGRPCardFooter
   

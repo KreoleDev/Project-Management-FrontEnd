@@ -14,9 +14,9 @@ export const IGRP_DEFAULT_MENU: IGRPMenuItemArgs[] = [
     pageSlug: 'dashboard',
     parentCode: null,
     applicationCode: 'APP_IGRP_PM',
-    permissions: [],
+    roles: [],
   },
-    {
+  {
     id: 63,
     code: 'MEU_MENU_PM',
     name: 'Listar de Projetos',
@@ -29,9 +29,24 @@ export const IGRP_DEFAULT_MENU: IGRPMenuItemArgs[] = [
     pageSlug: 'listar-projetos',
     parentCode: null,
     applicationCode: 'APP_IGRP_PM',
-    permissions: [],
+    roles: [],
   },
-    {
+  {
+    id: 83,
+    code: 'MEU_MENU_PM',
+    name: 'Mapa de Localizações',
+    type: 'MENU_PAGE',
+    position: 0,
+    icon: 'AppWindow',
+    status: 'ACTIVE',
+    target: '_self',
+    url: '/project/map-locations',
+    pageSlug: 'mapa-localizacoes',
+    parentCode: null,
+    applicationCode: 'APP_IGRP_PM',
+    roles: [],
+  },
+  {
     id: 73,
     code: 'MEU_MENU_PM',
     name: 'Relatório  e Analise',
@@ -44,7 +59,6 @@ export const IGRP_DEFAULT_MENU: IGRPMenuItemArgs[] = [
     pageSlug: 'relatorio-analise',
     parentCode: null,
     applicationCode: 'APP_IGRP_PM',
-    permissions: [],
+    roles: [],
   },
-  
 ];
