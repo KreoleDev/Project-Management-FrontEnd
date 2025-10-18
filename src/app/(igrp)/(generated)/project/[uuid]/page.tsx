@@ -8,13 +8,13 @@
 
 import { use, useState, useEffect, useRef } from 'react';
 import { cn, useIGRPMenuNavigation, useIGRPToast } from '@igrp/igrp-framework-react-design-system';
+import {ProjectProgress} from '@/app/(myapp)/components/project-progress'
 import DetailCard from '@/app/(igrp)/(generated)/project/components/detailcard'
 import { 
   IGRPPageHeader,
 	IGRPButton,
 	IGRPBadge,
 	IGRPText,
-	IGRPSeparator,
 	IGRPTabs,
 	IGRPTabItem,
 	IGRPCard,
@@ -213,7 +213,7 @@ iconName={ `Trash2` }
 </div>
 </IGRPPageHeader>
 
-<div className={ cn('block','mr-3 ml-3 mx-3 pt-3 pr-5 pb-3 pl-5 px-5 py-3',' rounded-lg border',)}    >
+<div className={ cn('block','mr-3 ml-3 mx-3 pt-3 pr-5 pb-3 pl-5 px-5 py-3',' rounded-lg border space-y-4',)}    >
 	<div className={ cn('flex','flex flex-row flex-nowrap items-center justify-between gap-2',)}    >
 	<IGRPBadge
   name={ `badge1` }
@@ -256,14 +256,7 @@ maxLines={ `0` }
 >
   { updatedAt }
 </IGRPText></div></div>
-<IGRPSeparator
-  name={ `separator1` }
-  orientation={ `horizontal` }
-  className={ cn('my-6',) }
-  
-  
->
-</IGRPSeparator>
+<ProjectProgress    ></ProjectProgress>
 <div className={ cn('grid','grid-cols-1 ','md:grid-cols-2 ','lg:grid-cols-4 ','grid grid grid-cols-4 grid-rows-1 gap-2 justify-items-stretch items-start',' gap-4 w-full',)}    >
 	<DetailCard  icon={ `Euro` } title={ `Investimento` } count={ investment }   ></DetailCard>
 <DetailCard  icon={ `Users` } title={ `Empregos` } count={ employment }   ></DetailCard>

@@ -48,5 +48,5 @@ export default {
     'functions/project',
     'hooks/project'
   ],
-  components: ['components/MapClick','components/MapLocations']
+  components: ['components/MapClick','components/MapLocations','components/project-progress']
 };
