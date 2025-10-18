@@ -272,6 +272,7 @@ maxLines={ `0` }
 <div className={ cn('mr-3 ml-3 mx-3 pt-3 pr- pb-3 pl- px- py-3',)}    >
 	<IGRPTabs
   variant={ `default` }
+  tabContentClassName={ `border rounded-lg border-none-transparent` }
   iconPlacement={ `start` }
   tabListClassName={ cn('w-full',) }
   items={

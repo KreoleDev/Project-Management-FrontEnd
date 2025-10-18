@@ -129,6 +129,7 @@ formRef={ formform1Ref }
   <>
   <IGRPTabs
   variant={ `default` }
+  tabContentClassName={ `border rounded-lg border-none-transparent` }
   showIcon={ true }
   iconPlacement={ `start` }
   tabListClassName={ cn('w-full','mr-6',) }

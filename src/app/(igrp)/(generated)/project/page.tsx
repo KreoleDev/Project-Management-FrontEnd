@@ -103,12 +103,12 @@ iconName={ `Plus` }
 </div>
 </IGRPPageHeader>
 
-<div className={ cn('grid','grid-cols-1 ','md:grid-cols-2 ','lg:grid-cols-4 ','mr-5 ml-5 mx-5',' gap-4',)}    >
+<div className={ cn('grid','grid-cols-1 ','md:grid-cols-2 ','lg:grid-cols-4 ',' gap-4',)}    >
 	<ProjectsCard  title={ `Total` } count={ `200` }   ></ProjectsCard>
 <ProjectsCard  title={ `Em Funcionamento` } count={ `100` }   ></ProjectsCard>
 <ProjectsCard  title={ `Em Implementação` } count={ `50` }   ></ProjectsCard>
 <ProjectsCard  title={ `Em Financiamento` } count={ `50` }   ></ProjectsCard></div>
-<div className={ cn('mr-4 ml-4 mx-4',' rounded-lg border',)}    >
+<div className={ cn(' rounded-lg border',)}    >
 	<div className={ cn('flex','flex flex-row flex-nowrap items-stretch justify-between gap-2','pt-3 pr-3 pb-3 pl-3 px-3 py-3',)}    >
 	<IGRPInputSearch
   name={ `inputSearch1` }
@@ -193,13 +193,11 @@ iconName={ `X` }
   
 >
   Limpar Filtros
-</IGRPButton></div></div>)}
+</IGRPButton></div></div>)}</div>
 <IGRPDataTable<Table1, Table1>
   showFilter={ true }
   showPagination={ true }
-  tableClassName={ `rounded-none` }
-  paginationClassName={ `px-3 pb-3` }
-  className={ cn() }
+  className={ cn('',) }
   columns={
     [
         {
@@ -333,6 +331,6 @@ return (
   }
   
   data={ contentTabletable1 }
-/></div></div></div>
+/></div></div>
   );
 }
