@@ -122,6 +122,8 @@ const [statusDesc, setStatusDesc] = useState<string>(undefined);
 
 const [openPhaseModal, setOpenPhaseModal] = useState<boolean>(undefined);
 
+const [phaseCurrentData, setPhaseCurrentData] = useState<any>(undefined);
+
 const { igrpToast } = useIGRPToast()
 
 const router = useRouter()
@@ -950,7 +952,8 @@ size={ `sm` }
 showIcon={ true }
 iconName={ `SquarePen` }
   className={ cn() }
-  onClick={ () => {setOpenPhaseModal(!openPhaseModal); setCurrentData(currentData)
+  onClick={ () => {setOpenPhaseModal(!openPhaseModal); setPhaseCurrentData(item)
+
 
 } }
   
@@ -1178,7 +1181,9 @@ content: (<>
 ]
   }
 /></div></div>
-<StatusChange  openModal={ openStatusModal } initialStatus={ status } initialData={ currentData }   ></StatusChange>
-<PhaseCard  openModal={ openPhaseModal } initialData={ currentData }   ></PhaseCard></div>
+<StatusChange  openModal={ openStatusModal } initialStatus={ status } initialData={ currentData }  setOpen={ setOpenStatusModal
+ } ></StatusChange>
+<PhaseCard  openModal={ openPhaseModal } initialData={ phaseCurrentData }  setOpen={ setOpenPhaseModal
+ } ></PhaseCard></div>
   );
 }
