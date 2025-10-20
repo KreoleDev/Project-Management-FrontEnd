@@ -100,6 +100,7 @@ const initForm1: z.infer<Form1ZodType> = {
   const [selectinvestmentOriginOptions, setSelectinvestmentOriginOptions] = useState<IGRPOptionsProps[]>([]);
   const [selectislandOptions, setSelectislandOptions] = useState<IGRPOptionsProps[]>([]);
   const [formListformList1Default, setFormListformList1Default] = useState<any>({});
+  const [selectcombobox1Options, setSelectcombobox1Options] = useState<IGRPOptionsProps[]>([]);
   const [selectbuiPlatformStageOptions, setSelectbuiPlatformStageOptions] = useState<IGRPOptionsProps[]>([]);
   
 const { igrpToast } = useIGRPToast()
@@ -483,40 +484,41 @@ iconName={ `Phone` }
 </IGRPHeadline>
 </IGRPCardHeader>
   <IGRPCardContent
-  className={ cn('','space-x-3','space-y-3','grid grid grid-cols-2 grid-rows-1 gap-2 justify-items-stretch items-start',) }
+  className={ cn('','space-x-3','space-y-3',) }
   
 >
-  <IGRPInputText
+  <div className={ cn('grid','grid-cols-1 ','md:grid-cols-2 ','lg:grid-cols-3 ',' gap-4',)}    >
+	<IGRPInputText
   name={ `phone` }
   label={ `Telefone` }
 showIcon={ false }
 required={ true }
-  className={ cn('',) }
+  className={ cn('col-span-1',) }
   
   
 >
 </IGRPInputText>
-  <IGRPInputNumber
+<IGRPInputNumber
   name={ `nif` }
   label={ `NIF` }
 max={ 9999999 }
 step={ 1 }
 required={ true }
-  className={ cn('',) }
+  className={ cn('col-span-1',) }
   
   
 >
 </IGRPInputNumber>
-  <IGRPInputText
+<IGRPInputText
   name={ `email` }
   label={ `Email de Contato` }
 showIcon={ false }
 required={ true }
-  className={ cn('',) }
+  className={ cn('col-span-1',) }
   
   
 >
-</IGRPInputText>
+</IGRPInputText></div>
 </IGRPCardContent>
   <IGRPCardFooter
   
@@ -559,22 +561,37 @@ iconName={ `FileText` }
   <IGRPFormList
   id={ `formlist_4sfga6` }
   name={ `formList1` }
+  label={ `Anexo` }
   color={ `primary` }
   variant={ `solid` }
   addButtonLabel={ `Add` }
   addButtonIconName={ `Plus` }
 renderItem={ (_: any, index: number) => (
       <>
-        <IGRPInputFile
+        <div className={ cn('grid','grid-cols-1 ','md:grid-cols-2 ','lg:grid-cols-4 ',' gap-4',)}    >
+	<IGRPCombobox
+  name={ `formList1.${index}.combobox1` }
+  label={ `Tipo documento` }
+variant={ `single` }
+placeholder={ `Select an option...` }
+required={ undefined }
+selectLabel={ `No option found` }
+showSearch={ true }
+showIcon={ false }
+iconName={ `CornerDownRight` }
+  onChange={ () => {} }
+  options={ selectcombobox1Options }
+>
+</IGRPCombobox>
+<IGRPInputFile
   name={ `formList1.${index}.inputFile1` }
   label={ `Carregar documentos` }
 accept={ `application/pdf` }
 required={ false }
-  className={ cn() }
   
   
 >
-</IGRPInputFile>
+</IGRPInputFile></div>
 </>
     )
   }
@@ -689,7 +706,6 @@ required={ true }
   label={ `Etapa na Plataforma BUI` }
 variant={ `single` }
 placeholder={ `Select an option...` }
-required={ undefined }
 selectLabel={ `No option found` }
 showSearch={ true }
 showIcon={ false }
