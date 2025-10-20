@@ -12,6 +12,7 @@ import ProjectsCard from '@/app/(igrp)/(generated)/project/components/projectsca
 import { IGRPOptionsProps } from "@igrp/igrp-framework-react-design-system";
 import { IGRPDataTableFacetedFilterFn , IGRPDataTableDateRangeFilterFn } from "@igrp/igrp-framework-react-design-system";
 import { IGRPDataTableHeaderSortToggle, IGRPDataTableHeaderSortDropdown, IGRPDataTableHeaderRowsSelect } from "@igrp/igrp-framework-react-design-system";
+import {ExcelUploadModal} from '@/app/(myapp)/components/ExcelUploadModal'
 import { 
   IGRPPageHeader,
 	IGRPButton,
@@ -26,6 +27,7 @@ import {
 import {useProject} from '@/app/(myapp)/hooks/project'
 import { useRouter } from "next/navigation"
 import { useQueryClient } from '@tanstack/react-query';
+import {getStatusProject} from '@/app/(myapp)/functions/project'
 
 
 export default function PageProjectComponent() {
@@ -52,13 +54,33 @@ export default function PageProjectComponent() {
   const [contentTabletable1, setContentTabletable1] = useState<Table1[]>([]);
   
   
-const [showFIlters, setShowFIlters] = useState<boolean>(undefined);
+const [showFIlters, setShowFIlters] = useState<boolean>(false);
+
+const [showExcelUpload, setShowExcelUpload] = useState<boolean>(false);
 
 const { igrpToast } = useIGRPToast()
 
 function goToNewProject (): void  | undefined {
 
   router.push("project/new")
+
+}
+
+async function handleExcelUpload (result: any): Promise<void  | undefined> {
+
+  if (result.success && result.data) {
+    igrpToast({
+      title: 'Excel Upload Successful',
+      description: `Successfully uploaded ${result.totalRows} rows from Excel file.`,
+    });
+    
+    // Here you can process the Excel data
+    console.log('Excel data:', result.data);
+    
+    // Example: Convert to projects if the Excel has project data
+    // const projects = result.data.map(sheet => sheet.data).flat();
+    // Process projects data...
+  }
 
 }
 
@@ -109,7 +131,7 @@ iconName={ `Plus` }
 <ProjectsCard  title={ `Em Implementação` } count={ `50` }   ></ProjectsCard>
 <ProjectsCard  title={ `Em Financiamento` } count={ `50` }   ></ProjectsCard></div>
 <div className={ cn(' rounded-lg border',)}    >
-	<div className={ cn('flex','flex flex-row flex-nowrap items-stretch justify-between gap-2','pt-3 pr-3 pb-3 pl-3 px-3 py-3',)}    >
+	<div className={ cn('flex','flex flex-row flex-nowrap items-center justify-between gap-2','pt-3 pr-3 pb-3 pl-3 px-3 py-3',)}    >
 	<IGRPInputSearch
   name={ `inputSearch1` }
   label={ undefined }
@@ -118,19 +140,43 @@ startIcon={ `Search` }
 submitIcon={ `ArrowRight` }
 required={ false }
 submitButtonLabel={ `Search` }
-placeholder={ `pesquisar por nome...` }
+placeholder={ `pesquisar por projeto...` }
   className={ cn('w-full ',) }
   setValueChange={ (value) => '' }
   
 >
 </IGRPInputSearch>
 <IGRPButton
+  name={ `button4` }
+  variant={ `outline` }
+size={ `icon` }
+showIcon={ true }
+iconName={ `CloudUpload` }
+  className={ cn() }
+  onClick={  () => setShowExcelUpload(true) }
+  
+>
+  Upload Execel
+</IGRPButton>
+<IGRPButton
+  name={ `button5` }
+  variant={ `outline` }
+size={ `icon` }
+showIcon={ true }
+iconName={ `CloudDownload` }
+  className={ cn() }
+  onClick={ () => {} }
+  
+>
+  Download Execel
+</IGRPButton>
+<IGRPButton
   name={ `button2` }
   variant={ `outline` }
 size={ `default` }
 showIcon={ true }
 iconName={ `SlidersVertical` }
-  className={ cn('','flex flex-row flex-nowrap items-stretch justify-start gap-2','mt-2',) }
+  className={ cn('',) }
   onClick={ () => {setShowFIlters(!showFIlters)
 } }
   
@@ -141,7 +187,7 @@ iconName={ `SlidersVertical` }
 	<div className={ cn('grid','grid-cols-1 ','md:grid-cols-2 ','lg:grid-cols-4 ','mt-1 pt-3 pr-3 pb-3 pl-3 px-3 py-3',' gap-4',)}    >
 	<IGRPCombobox
   name={ `combobox1` }
-  label={ `Status do Projeto` }
+  label={ `Estado do Projeto` }
 variant={ `single` }
 placeholder={ `Select an option...` }
 selectLabel={ `No option found` }
@@ -281,11 +327,12 @@ iconName={ `X` }
           cell: ({ row }) => {
           const rowData = row.original;
 
+const { iconName, bgClass, textClass, label, className } = getStatusProject(rowData);
 
 return <IGRPDataTableCellBadge
-  label={ row.original.statusDesc }
+  label={ label ?? row.original.statusDesc }
   variant={ `soft` }
-badgeClassName={ `` }
+badgeClassName={ `${bgClass} ${textClass} ${className}` }
 >
 
 </IGRPDataTableCellBadge>
@@ -331,6 +378,8 @@ return (
   }
   
   data={ contentTabletable1 }
-/></div></div>
+/>
+<ExcelUploadModal  title={ `Upload Projects Excel File` } description={ `Upload an Excel file containing project data. The file should include columns for project name, description, status, etc.` } isOpen={ showExcelUpload }  onClose={ () => setShowExcelUpload(false) }
+onUploadSuccess={ handleExcelUpload } ></ExcelUploadModal></div></div>
   );
 }

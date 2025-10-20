@@ -13,6 +13,7 @@ import {
   IGRPPageHeader,
 	IGRPButton 
 } from "@igrp/igrp-framework-react-design-system";
+import { useRouter } from 'next/navigation';
 
 
 export default function PageMaplocationsComponent() {
@@ -23,15 +24,23 @@ export default function PageMaplocationsComponent() {
   
 const { igrpToast } = useIGRPToast()
 
+function handleLocationClick (location: any): void  | undefined {
+
+  router.push(`/project/${location.id}`);
+
+}
+
+ const router = useRouter()
+
 
   return (
 <div className={ cn('page','space-y-6',)}    >
 	<IGRPPageHeader
   name={ `Mapa` }
-  title={ `Mapa de Localizações` }
-  description={ `Page Description` }
+  title={ `Mapa dos projetos` }
   iconBackButton={ `ArrowLeft` }
   variant={ `h3` }
+  className={ cn() }
   
 >
   <div className="flex items-center gap-2">
@@ -51,6 +60,6 @@ iconName={ `MapPinPlus` }
 </IGRPPageHeader>
 
 <div className={ cn('section',' space-y-6',)}    >
-	<MapLocations    ></MapLocations></div></div>
+	<MapLocations   onLocationClick={ handleLocationClick } ></MapLocations></div></div>
   );
 }

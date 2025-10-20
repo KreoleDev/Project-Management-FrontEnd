@@ -42,11 +42,11 @@
  */
 
 export default {
-  types: [],
+  types: ['types/excel'],
   actions: [],
   functions: [
     'functions/project',
     'hooks/project'
   ],
-  components: ['components/MapClick','components/MapLocations','components/project-progress']
+  components: ['components/MapClick','components/MapLocations','components/project-progress', 'components/ExcelUploadModal', 'components/details-report']
 };

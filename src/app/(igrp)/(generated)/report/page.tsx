@@ -9,6 +9,7 @@
 import { use, useState, useEffect, useRef } from 'react';
 import { cn, useIGRPMenuNavigation, useIGRPToast } from '@igrp/igrp-framework-react-design-system';
 import DashboardCard from '@/app/(igrp)/(generated)/dashboard/components/dashboardcard'
+import {DetailsReport} from '@/app/(myapp)/components/details-report'
 import { 
   IGRPPageHeader,
 	IGRPButton 
@@ -55,6 +56,7 @@ iconName={ `ArrowDownToLine` }
 	<DashboardCard  title={ `Projetos Ativos` } body={ `291` }   ></DashboardCard>
 <DashboardCard  title={ `Investimento Total` } body={ `45.7M` }   ></DashboardCard>
 <DashboardCard  title={ `Empregos Criados` } body={ `2846` }   ></DashboardCard>
-<DashboardCard  title={ `Taxa de Sucesso` } body={ `87%` }   ></DashboardCard></div></div></div>
+<DashboardCard  title={ `Taxa de Sucesso` } body={ `87%` }   ></DashboardCard></div>
+<DetailsReport    ></DetailsReport></div></div>
   );
 }

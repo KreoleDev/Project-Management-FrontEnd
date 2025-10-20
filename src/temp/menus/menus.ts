@@ -19,7 +19,7 @@ export const IGRP_DEFAULT_MENU: IGRPMenuItemArgs[] = [
   {
     id: 63,
     code: 'MEU_MENU_PM',
-    name: 'Listar de Projetos',
+    name: 'Lista de Projetos',
     type: 'MENU_PAGE',
     position: 0,
     icon: 'AppWindow',
