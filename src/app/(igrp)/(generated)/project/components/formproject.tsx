@@ -11,7 +11,7 @@ import { cn, useIGRPMenuNavigation, useIGRPToast } from '@igrp/igrp-framework-re
 import { IGRPFormHandle } from "@igrp/igrp-framework-react-design-system";
 import { z } from "zod"
 import { IGRPOptionsProps } from "@igrp/igrp-framework-react-design-system";
-import {MapClick} from '@/app/(myapp)/components/MapClick'
+import {InteractiveMap} from '@/app/(myapp)/components/InteractiveMap'
 import { 
   IGRPForm,
 	IGRPTabs,
@@ -50,10 +50,12 @@ export default function Formproject({ initialData, isSubmitting, onAfterSubmit }
     investmentOrigin: z.string().optional(),
     location: z.string().optional(),
     island: z.string().optional(),
+    latitude: z.number().optional(),
+    longitude: z.number().optional(),
     phone: z.string().optional(),
     nif: z.string().optional(),
     email: z.string().optional(),
-    formList1: z.array(z.object({ inputFile1: z.string().optional() })).optional(),
+    formList1: z.array(z.object({ combobox1: z.string().optional(), inputFile1: z.string().optional() })).optional(),
     certificateNumber: z.string().optional(),
     referenceBo: z.string().optional(),
     approvalYear: z.string().optional(),
@@ -64,29 +66,31 @@ export default function Formproject({ initialData, isSubmitting, onAfterSubmit }
 type Form1ZodType = typeof form1;
 
 const initForm1: z.infer<Form1ZodType> = {
-    processNumber: undefined,
-    projectName: undefined,
-    promoter: undefined,
-    promotingCompany: undefined,
-    promoterGender: undefined,
-    status: undefined,
-    activity: undefined,
+    processNumber: ``,
+    projectName: ``,
+    promoter: ``,
+    promotingCompany: ``,
+    promoterGender: ``,
+    status: ``,
+    activity: ``,
     investment: undefined,
     employment: undefined,
-    sector: undefined,
-    capitalOrigin: undefined,
-    investmentOrigin: undefined,
-    location: undefined,
-    island: undefined,
-    phone: undefined,
-    nif: undefined,
-    email: undefined,
-    formList1: [{ inputFile1: undefined }],
-    certificateNumber: undefined,
-    referenceBo: undefined,
-    approvalYear: undefined,
-    publicationDateBo: undefined,
-    buiPlatformStage: undefined
+    sector: ``,
+    capitalOrigin: ``,
+    investmentOrigin: ``,
+    location: ``,
+    island: ``,
+    latitude: undefined,
+    longitude: undefined,
+    phone: ``,
+    nif: ``,
+    email: ``,
+    formList1: [{ combobox1: ``, inputFile1: `` }],
+    certificateNumber: ``,
+    referenceBo: ``,
+    approvalYear: ``,
+    publicationDateBo: ``,
+    buiPlatformStage: ``
 }
 
 
@@ -104,6 +108,13 @@ const initForm1: z.infer<Form1ZodType> = {
   const [selectbuiPlatformStageOptions, setSelectbuiPlatformStageOptions] = useState<IGRPOptionsProps[]>([]);
   
 const { igrpToast } = useIGRPToast()
+
+function handleMapClick (lat: number, lng: number): void  | undefined {
+
+  formform1Ref.current?.setValue('latitude', lat);
+formform1Ref.current?.setValue('longitude', lng);
+
+}
 
 const {projectStatusOptions,
        capitalOriginOptions,
@@ -445,8 +456,29 @@ iconName={ `CornerDownRight` }
   onChange={ () => {} }
   options={ selectislandOptions }
 >
-</IGRPCombobox></div>
-  <MapClick    ></MapClick>
+</IGRPCombobox>
+<IGRPInputText
+  name={ `latitude` }
+  label={ `Latitude` }
+showIcon={ false }
+required={ false }
+  className={ cn('col-span-1',) }
+  
+  
+>
+</IGRPInputText>
+<IGRPInputText
+  name={ `longitude` }
+  label={ `Longitude` }
+showIcon={ false }
+required={ false }
+  className={ cn('col-span-1',) }
+  
+  
+>
+</IGRPInputText></div>
+  <InteractiveMap  height={ `400px` } showCurrentLocationButton={ true }  onCurrentLocationFound={ handleMapClick }
+onLocationSelect={ handleMapClick } ></InteractiveMap>
 </IGRPCardContent>
   <IGRPCardFooter
   
@@ -574,7 +606,6 @@ renderItem={ (_: any, index: number) => (
   label={ `Tipo documento` }
 variant={ `single` }
 placeholder={ `Select an option...` }
-required={ undefined }
 selectLabel={ `No option found` }
 showSearch={ true }
 showIcon={ false }

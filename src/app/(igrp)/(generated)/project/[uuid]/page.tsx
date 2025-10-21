@@ -863,7 +863,7 @@ maxLines={ 3 }
         },
         {
           value: `tabsItem2-BZsh`,
-          label: `Fazes do Projeto`,
+          label: `Fases do Projeto`,
           icon: `ArrowRight`,
 content: (<>
             <IGRPCard

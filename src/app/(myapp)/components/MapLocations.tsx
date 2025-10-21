@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Map } from './Map';
+import { InteractiveMap } from './InteractiveMap';
 
 interface Location {
   id: string | number;
@@ -61,12 +61,19 @@ function MapLocations({ onLocationClick }: { onLocationClick: (location: Locatio
     onLocationClick?.(location);
   };
   return (
-    <Map
+    <InteractiveMap
+      mode="locations"
       locations={locations}
       onLocationClick={handleLocationClick}
       showPopup={true}
       autoFitBounds={true}
       height="600px"
+      showHomeButton={true}
+      homeRoute="/"
+      showCurrentLocationButton={true}
+      onCurrentLocationFound={(lat, lng) => {
+        console.log('Coordinates found (from geolocation or map click):', { lat, lng });
+      }}
     />
   );
 }
