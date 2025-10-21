@@ -10,6 +10,10 @@ import { use, useState, useEffect, useRef } from 'react';
 import { cn, useIGRPMenuNavigation, useIGRPToast } from '@igrp/igrp-framework-react-design-system';
 import {ProjectProgress} from '@/app/(myapp)/components/project-progress'
 import DetailCard from '@/app/(igrp)/(generated)/project/components/detailcard'
+import DevelopmentIndicator from '@/app/(igrp)/(generated)/project/components/developmentindicator'
+import FinancingIndicator from '@/app/(igrp)/(generated)/project/components/financingindicator'
+import ImplementationIndicator from '@/app/(igrp)/(generated)/project/components/implementationindicator'
+import FunctioningIndicator from '@/app/(igrp)/(generated)/project/components/functioningindicator'
 import StatusChange from '@/app/(igrp)/(generated)/project/components/statuschange'
 import PhaseCard from '@/app/(igrp)/(generated)/project/components/phasecard'
 import { 
@@ -961,104 +965,15 @@ iconName={ `SquarePen` }
   Editar Fase
 </IGRPButton></div></div>
   <div className={ cn('pl-8',)}    >
-	<IGRPText
-  name={ `text39` }
-  variant={ `primary` }
-weight={ `normal` }
-size={ `default` }
-align={ `left` }
-spacing={ `normal` }
-maxLines={ 3 }
-  className={ cn() }
-  
-  
->
-  { item.requirements }
-</IGRPText>
-<ProjectProgress  label={ `Progresso` } value={ item.completionPercentage }   ></ProjectProgress>
-<div className={ cn('flex','mt-5',)}    >
-	<IGRPText
-  name={ `text41` }
-  variant={ `primary` }
-weight={ `semibold` }
-size={ `default` }
-align={ `left` }
-spacing={ `normal` }
-maxLines={ 3 }
-  className={ cn('me-2',) }
-  
-  
->
-  Financiamento:    
-</IGRPText>
-<IGRPText
-  name={ `text42` }
-  variant={ `primary` }
-weight={ `normal` }
-size={ `default` }
-align={ `left` }
-spacing={ `normal` }
-maxLines={ 3 }
-  className={ cn() }
-  
-  
->
-  { item.indicators.fundingDecision }
-</IGRPText></div>
-<div className={ cn('flex',)}    >
-	<IGRPText
-  name={ `text45` }
-  variant={ `primary` }
-weight={ `semibold` }
-size={ `default` }
-align={ `left` }
-spacing={ `normal` }
-maxLines={ 3 }
-  
-  
->
-  Negociação Bancária:
-</IGRPText>
-<IGRPText
-  name={ `text43` }
-  variant={ `primary` }
-weight={ `normal` }
-size={ `default` }
-align={ `left` }
-spacing={ `normal` }
-maxLines={ 3 }
-  
-  
->
-  { item.indicators.bankNegotiation }
-</IGRPText></div>
-<div className={ cn('flex',)}    >
-	<IGRPText
-  name={ `text47` }
-  variant={ `primary` }
-weight={ `semibold` }
-size={ `default` }
-align={ `left` }
-spacing={ `normal` }
-maxLines={ 3 }
-  
-  
->
-  Crédito:
-</IGRPText>
-<IGRPText
-  name={ `text46` }
-  variant={ `primary` }
-weight={ `normal` }
-size={ `default` }
-align={ `left` }
-spacing={ `normal` }
-maxLines={ 3 }
-  
-  
->
-  { item.indicators.creditContracting }
-</IGRPText></div></div>
+	<ProjectProgress  label={ `Progresso` } value={ item.completionPercentage }   ></ProjectProgress>
+{ item.phaseName === "desenvolvimento" && (<div className={ cn()}    >
+	<DevelopmentIndicator    ></DevelopmentIndicator></div>)}
+{ item.phaseName === "financiamento" && (<div className={ cn()}    >
+	<FinancingIndicator    ></FinancingIndicator></div>)}
+{ item.phaseName === "implementacao" && (<div className={ cn()}    >
+	<ImplementationIndicator  sector={ sector }   ></ImplementationIndicator></div>)}
+{ item.phaseName === "funcionamento" && (<div className={ cn()}    >
+	<FunctioningIndicator  investmentMade={ item.investmentMade } businessVolume={ item.businessVolume } jobsPlanned={ item.jobsPlanned } jobsCreated={ item.jobsCreated } reinvestmentPlan={ item.reinvestmentPlan } island={ item.island } sector={ item.sector } term={ item.term } reason={ item.reason } itemData={ item.indicators }   ></FunctioningIndicator></div>)}</div>
 </>
 }
 </IGRPRepetitiveComponent>

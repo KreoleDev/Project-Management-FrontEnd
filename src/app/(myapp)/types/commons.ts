@@ -42,8 +42,6 @@ export interface ProjectPhase {
   id: string;
   phaseName: string;
   phaseNameDesc: string;
-  phaseOrder: number;
-  requirements?: string;
   completionPercentage: number;
   startedAt?: string;
   completedAt?: string;
@@ -54,20 +52,19 @@ export interface ProjectPhase {
 
 export interface PhaseIndicators {
   // Development indicators
-  projectPrepared?: boolean;
-  projectApproved?: boolean;
-  licensingCompleted?: boolean;
+  projectElaboration?: boolean;
+  projectApproval?: boolean;
+  licensing?: boolean;
 
   // Funding indicators
-  fundingDecision?: "Pendente" | "Aprovado" | "Rejeitado";
-  bankNegotiation?: "Não Iniciado" | "Em Progresso" | "Concluído";
-  creditContracting?: "Não Iniciado" | "Em Progresso" | "Concluído";
+  fundingDecision?: boolean;
+  bankNegotiation?: boolean;
+  creditContracting?: boolean;
 
   // Implementation indicators
-  constructionProgress?: "1-30%" | "31-70%" | "71-99%" | "100%";
+  constructionProgress?: string;
   equipmentInstallation?: boolean;
-  inspectionCompleted?: boolean;
-  operationLicenseGranted?: boolean;
+  inspectionAndLicensing?: boolean;
 
   // Operational indicators
   investmentMade?: number;
@@ -75,7 +72,11 @@ export interface PhaseIndicators {
   jobsPlanned?: number;
   jobsCreated?: number;
   reinvestmentPlan?: string;
-  reinvestmentTerm?: "Curto Prazo" | "Médio Prazo" | "Longo Prazo";
+  reinvestmentDesc?: string;
+  island?: string;
+  sector?: string;
+  term?: string;
+  reason?: string;
 }
 
 
