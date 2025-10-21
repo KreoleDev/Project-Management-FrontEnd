@@ -143,7 +143,8 @@ export const sampleProjects: Project[] = [
     phases: [
       {
         id: 'p1',
-        phaseName: 'Desenvolvimento',
+        phaseName: 'desenvolvimento',
+        phaseNameDesc: 'Desenvolvimento',
         phaseOrder: 1,
         requirements: 'Estudo de Viabilidade, Aprovação das Autoridades',
         status: 'Concluído',
@@ -159,7 +160,8 @@ export const sampleProjects: Project[] = [
       },
       {
         id: 'p2',
-        phaseName: 'Implementation',
+        phaseName: 'implementacao',
+        phaseNameDesc: 'Implementação',
         phaseOrder: 2,
         completionPercentage: 80,
         status: 'Concluído',
@@ -227,7 +229,8 @@ export const sampleProjects: Project[] = [
     phases: [
       {
         id: 'p3',
-        phaseName: 'Financiamento',
+        phaseName: 'financiamento',
+        phaseNameDesc: 'Financiamento',
         phaseOrder: 1,
         status: 'Pendente',
         completionPercentage: 100,
@@ -243,7 +246,8 @@ export const sampleProjects: Project[] = [
       },
       {
         id: 'p4',
-        phaseName: 'Implementação',
+        phaseName: 'implementacao',
+        phaseNameDesc: 'Implementação',
         phaseOrder: 2,
         status: 'Em Progresso',
         requirements: 'Construção do Hotel, Instalação de Equipamentos',
@@ -305,7 +309,8 @@ export const sampleProjects: Project[] = [
     phases: [
       {
         id: 'p5',
-        phaseName: 'Desenvolvimento',
+        phaseName: 'desenvolvimento',
+        phaseNameDesc: 'Desenvolvimento',
         phaseOrder: 1,
         status: 'Em Finalização',
         requirements: 'Aprovação do Local, Licença Ambiental',
@@ -321,7 +326,8 @@ export const sampleProjects: Project[] = [
       },
       {
         id: 'p6',
-        phaseName: 'Funding',
+        phaseName: 'financiamento',
+        phaseNameDesc: 'Financiamento',
         phaseOrder: 2,
         status: 'Em Financiamento',
         requirements: 'Aprovação do Financiamento',

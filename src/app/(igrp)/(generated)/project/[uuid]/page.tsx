@@ -96,7 +96,7 @@ const [comments, setComments] = useState<array>(undefined);
 
 const [documents, setDocuments] = useState<array>(undefined);
 
-const [phaseName, setPhaseName] = useState<string>(undefined);
+const [phaseNameDesc, setPhaseNameDesc] = useState<string>(undefined);
 
 const [phaseOrder, setPhaseOrder] = useState<number>(undefined);
 
@@ -928,7 +928,7 @@ maxLines={ `0` }
   
   
 >
-  { item.phaseName }
+  { item.phaseNameDesc }
 </IGRPText>
 <div className={ cn('flex flex-row flex-nowrap items-center justify-end gap-2',)}    >
 	<IGRPBadge
@@ -1183,7 +1183,7 @@ content: (<>
 /></div></div>
 <StatusChange  openModal={ openStatusModal } initialStatus={ status } initialData={ currentData }  setOpen={ setOpenStatusModal
  } ></StatusChange>
-<PhaseCard  openModal={ openPhaseModal } initialData={ phaseCurrentData }  setOpen={ setOpenPhaseModal
+<PhaseCard  openModal={ openPhaseModal } initialData={ phaseCurrentData } sector={ sector }  setOpen={ setOpenPhaseModal
  } ></PhaseCard></div>
   );
 }

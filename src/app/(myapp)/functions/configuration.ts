@@ -5,11 +5,40 @@ export function projectStatus() {
     { value: "Em_Procura_de_Financiamento", label: "Em Procura de Financiamento" },
     { value: "Em_Implementação", label: "Em Implementação" },
     { value: "Em_Funcionamento", label: "Em Funcionamento" },
-    { value: "Aprovado", label: "Aprovado" },
-    { value: "Rejeitado", label: "Rejeitado" },
+  ];
+}
+export function phaseName() {
+  return [
+    { value: "desenvolvimento", label: "Desenvolvimento" },
+    { value: "financiamento", label: "Financiamento" },
+    { value: "implementacao", label: "Implementação" },
+    { value: "funcionamento", label: "Funcionamento" },
   ];
 }
 
+export function term() {
+  return [
+    { value: "curto", label: "Curto Prazo" },
+    { value: "medio", label: "Médio Prazo" },
+    { value: "longo", label: "Longo Prazo" },
+  ];
+}
+
+export function inWork() {
+  return [
+    { value: "1-30", label: "1-30%" },
+    { value: "31-70", label: "31-70%" },
+    { value: "71-99", label: "71-99%" },
+    { value: "100", label: "100%" },
+  ];
+}
+
+export function reinvestmentPlan() {
+  return [
+    { value: "sim", label: "Sim" },
+    { value: "nao", label: "Não" },
+  ];
+}
 
 export function capitalOrigin() {
   return [

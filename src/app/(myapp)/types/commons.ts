@@ -41,6 +41,7 @@ export interface Documents{
 export interface ProjectPhase {
   id: string;
   phaseName: string;
+  phaseNameDesc: string;
   phaseOrder: number;
   requirements?: string;
   completionPercentage: number;

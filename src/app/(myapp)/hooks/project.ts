@@ -9,6 +9,10 @@ import {
   island,
   promoterGender,
   buiPlatformStage,
+  phaseName,
+  inWork,
+  reinvestmentPlan,
+  term,
 } from '../functions/configuration';
 
 export const useProject = ({
@@ -53,6 +57,10 @@ export const useProjectConfiguration = () => {
   const islandOptions = island();
   const promoterGenderOptions = promoterGender();
   const buiPlatformStageOptions = buiPlatformStage();
+  const phaseNameOptions = phaseName();
+  const inWorkOptions = inWork();
+  const reinvestmentPlanOptions = reinvestmentPlan();
+  const termOptions = term();
 
   return {
     projectStatusOptions,
@@ -62,5 +70,9 @@ export const useProjectConfiguration = () => {
     islandOptions,
     promoterGenderOptions,
     buiPlatformStageOptions,
+    phaseNameOptions,
+    inWorkOptions,
+    reinvestmentPlanOptions,
+    termOptions,
   };
 };
