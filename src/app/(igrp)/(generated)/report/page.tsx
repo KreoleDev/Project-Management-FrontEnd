@@ -223,7 +223,7 @@ showIcon={ false }
   Este Ano
 </IGRPButton>
 <IGRPDatePickerRange
-  placeholder={ `Entre um Periodo` }
+  placeholder={ `Periodo Customizado` }
   name={ `datePickerRange1` }
   id={ `datePickerRange1` }
   startDate={ new Date(`1900-01-01`) }
