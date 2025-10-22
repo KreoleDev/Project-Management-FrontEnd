@@ -18,9 +18,9 @@ import {
 	IGRPModalDialogTitle,
 	IGRPForm,
 	IGRPCombobox,
-	IGRPInputNumber,
 	IGRPText,
 	IGRPCheckbox,
+	IGRPInputNumber,
 	IGRPTextarea,
 	IGRPModalDialogFooter,
 	IGRPButton 
@@ -30,64 +30,60 @@ import {useProjectConfiguration} from '@/app/(myapp)/hooks/project'
 export default function Phasecard({ openModal, initialData, setOpen, sector } : { openModal: boolean, initialData: any, setOpen: () => void, sector: string }) {
 
   
-  const form2 = z.object({
+  const form1 = z.object({
     phaseName: z.string().optional(),
-    phaseOrder: z.string().optional(),
-    completionPercentage: z.string().optional(),
-    requirements: z.string().optional(),
-    inWork: z.string().optional(),
-    checkbox7: z.boolean().optional(),
-    checkbox8: z.string().optional(),
-    checkbox5: z.boolean().optional(),
-    checkbox4: z.boolean().optional(),
-    checkbox6: z.boolean().optional(),
-    checkbox1: z.boolean().optional(),
-    checkbox3: z.boolean().optional(),
-    checkbox2: z.boolean().optional(),
-    inputNumber4: z.number().optional(),
-    inputNumber3: z.number().optional(),
-    inputNumber2: z.number().optional(),
-    inputNumber1: z.number().optional(),
-    reinvestPlan: z.string().optional(),
-    inputTextarea1: z.string().optional(),
+    constructionProgress: z.string().optional(),
+    equipmentInstallation: z.boolean().optional(),
+    inspectionAndLicensing: z.string().optional(),
+    projectElaboration: z.boolean().optional(),
+    projectApproval: z.boolean().optional(),
+    licensing: z.boolean().optional(),
+    creditContracting: z.boolean().optional(),
+    bankNegotiation: z.boolean().optional(),
+    fundingDecision: z.boolean().optional(),
+    investmentMade: z.number().optional(),
+    businessVolume: z.number().optional(),
+    jobsPlanned: z.number().optional(),
+    jobsCreated: z.number().optional(),
+    reinvestmentPlan: z.string().optional(),
+    reason: z.string().optional(),
     sector: z.string().optional(),
     island: z.string().optional(),
-    term: z.string().optional()
+    term: z.string().optional(),
+    completionPercentage: z.string().optional()
 })
 
-type Form2ZodType = typeof form2;
+type Form1ZodType = typeof form1;
 
-const initForm2: z.infer<Form2ZodType> = {
+const initForm1: z.infer<Form1ZodType> = {
     phaseName: undefined,
-    phaseOrder: undefined,
-    completionPercentage: undefined,
-    requirements: undefined,
-    inWork: undefined,
-    checkbox7: undefined,
-    checkbox8: undefined,
-    checkbox5: undefined,
-    checkbox4: undefined,
-    checkbox6: undefined,
-    checkbox1: undefined,
-    checkbox3: undefined,
-    checkbox2: undefined,
-    inputNumber4: undefined,
-    inputNumber3: undefined,
-    inputNumber2: undefined,
-    inputNumber1: undefined,
-    reinvestPlan: undefined,
-    inputTextarea1: undefined,
+    constructionProgress: undefined,
+    equipmentInstallation: undefined,
+    inspectionAndLicensing: undefined,
+    projectElaboration: undefined,
+    projectApproval: undefined,
+    licensing: undefined,
+    creditContracting: undefined,
+    bankNegotiation: undefined,
+    fundingDecision: undefined,
+    investmentMade: undefined,
+    businessVolume: undefined,
+    jobsPlanned: undefined,
+    jobsCreated: undefined,
+    reinvestmentPlan: undefined,
+    reason: undefined,
     sector: undefined,
     island: undefined,
-    term: undefined
+    term: undefined,
+    completionPercentage: undefined
 }
 
 
-  const formform2Ref = useRef<IGRPFormHandle<Form2ZodType> | null>(null);
-  const [form2Data, setForm2Data] = useState<any>(initForm2);
+  const formform2Ref = useRef<IGRPFormHandle<Form1ZodType> | null>(null);
+  const [form1Data, setForm1Data] = useState<any>(initForm1);
   const [selectphaseNameOptions, setSelectphaseNameOptions] = useState<IGRPOptionsProps[]>([]);
-  const [selectinWorkOptions, setSelectinWorkOptions] = useState<IGRPOptionsProps[]>([]);
-  const [selectreinvestPlanOptions, setSelectreinvestPlanOptions] = useState<IGRPOptionsProps[]>([]);
+  const [selectconstructionProgressOptions, setSelectconstructionProgressOptions] = useState<IGRPOptionsProps[]>([]);
+  const [selectreinvestmentPlanOptions, setSelectreinvestmentPlanOptions] = useState<IGRPOptionsProps[]>([]);
   const [selectsectorOptions, setSelectsectorOptions] = useState<IGRPOptionsProps[]>([]);
   const [selectislandOptions, setSelectislandOptions] = useState<IGRPOptionsProps[]>([]);
   const [selecttermOptions, setSelecttermOptions] = useState<IGRPOptionsProps[]>([]);
@@ -103,17 +99,25 @@ const {phaseNameOptions, inWorkOptions, reinvestmentPlanOptions, sectorOptions, 
 
 useEffect(() => {
   setSelectphaseNameOptions(phaseNameOptions || [])
-  setSelectinWorkOptions(inWorkOptions || [])
-  setSelectreinvestPlanOptions(reinvestmentPlanOptions || [])
+  setSelectconstructionProgressOptions(inWorkOptions || [])
+  setSelectreinvestmentPlanOptions(reinvestmentPlanOptions || [])
   setSelectislandOptions(islandOptions || [])
   setSelectsectorOptions(sectorOptions ||[])
   setSelecttermOptions(termOptions || [])
 },[])
 useEffect(() => {
-   if (initialData !== undefined) {
-    setForm1Data(initialData);
-    console.log("I am here with initial data", initialData);
-    setCurrentPhaseName(initialData.phaseName);
+  if (initialData !== undefined) {
+    const flattened = {
+    ...initialData,
+    ...initialData.indicators
+    };
+    delete flattened.indicators;
+
+    setForm1Data(flattened);
+    setCurrentPhaseName(flattened.phaseName);
+    console.log("flattened.reinvestmentPlan", flattened.reinvestmentPlan)
+    setCurrentReinVestPlan(flattened.reinvestmentPlan)
+    
   }
 
 }, [initialData])
@@ -126,12 +130,13 @@ useEffect(() => {
   open={ openModal }
 >
   <IGRPModalDialogContent
-  size={ `md` }
+  size={ `lg` }
   className={ cn() }
   
   
 >
   <IGRPModalDialogHeader
+  className={ cn('',) }
   
   
 >
@@ -146,11 +151,11 @@ useEffect(() => {
 </IGRPModalDialogHeader>
   <     >
 	<IGRPForm
-  schema={ form2 }
+  schema={ form1 }
   validationMode={ `onBlur` }
 formRef={ formform2Ref }
   onSubmit={ (e) => {} }
-  defaultValues={ form2Data }
+  defaultValues={ form1Data }
 >
   <>
   <div className={ cn('grid','grid-cols-1 ','md:grid-cols-1 ','lg:grid-cols-1 ',' gap-4',)}    >
@@ -168,18 +173,7 @@ iconName={ `CornerDownRight` }
 } }
   options={ selectphaseNameOptions }
 >
-</IGRPCombobox>
-<IGRPInputNumber
-  name={ `completionPercentage` }
-  label={ `Percentagem Concluido` }
-max={ 9999999 }
-step={ 1 }
-required={ false }
-  className={ cn('col-span-1',) }
-  
-  
->
-</IGRPInputNumber></div>
+</IGRPCombobox></div>
   { currentPhaseName && currentPhaseName != null && currentPhaseName != ""
  && (<div className={ cn('flex',)}    >
 	<IGRPText
@@ -213,7 +207,7 @@ maxLines={ 3 }
   { currentPhaseName == "implementacao" && (<div className={ cn()}    >
 	{ sector !== "Serviços" && (<div className={ cn('grid','grid-cols-1 ','md:grid-cols-2 ','lg:grid-cols-4 ',' gap-4',)}    >
 	<IGRPCombobox
-  name={ `inWork` }
+  name={ `constructionProgress` }
   label={ `Em obras` }
 variant={ `single` }
 placeholder={ `Select an option...` }
@@ -223,12 +217,12 @@ showIcon={ false }
 iconName={ `CornerDownRight` }
   className={ cn('col-span-1',) }
   onChange={ () => {} }
-  options={ selectinWorkOptions }
+  options={ selectconstructionProgressOptions }
 >
 </IGRPCombobox></div>)}
 <div className={ cn('grid','grid-cols-1 ','xs:grid-cols-1 ','md:grid-cols-1 ','lg:grid-cols-1 ',' gap-4 mt-4',)}    >
 	<IGRPCheckbox
-  name={ `checkbox7` }
+  name={ `equipmentInstallation` }
   label={ `Instalação de equipamentos` }
   className={ cn('col-span-1',) }
   
@@ -236,7 +230,7 @@ iconName={ `CornerDownRight` }
 >
 </IGRPCheckbox>
 <IGRPCheckbox
-  name={ `checkbox8` }
+  name={ `inspectionAndLicensing` }
   label={ `Vistoria e licenciamento` }
   className={ cn('col-span-1',) }
   
@@ -245,7 +239,7 @@ iconName={ `CornerDownRight` }
 </IGRPCheckbox></div></div>)}
   { currentPhaseName === "desenvolvimento" && (<div className={ cn('grid','grid-cols-1 ','xs:grid-cols-1 ','md:grid-cols-1 ','lg:grid-cols-1 ',' gap-4',)}    >
 	<IGRPCheckbox
-  name={ `checkbox5` }
+  name={ `projectElaboration` }
   label={ `Elaboração de projetos de especialidades` }
   className={ cn('col-span-1',) }
   
@@ -253,7 +247,7 @@ iconName={ `CornerDownRight` }
 >
 </IGRPCheckbox>
 <IGRPCheckbox
-  name={ `checkbox4` }
+  name={ `projectApproval` }
   label={ `Aprovação de projetos` }
   className={ cn('col-span-1',) }
   
@@ -261,7 +255,7 @@ iconName={ `CornerDownRight` }
 >
 </IGRPCheckbox>
 <IGRPCheckbox
-  name={ `checkbox6` }
+  name={ `licensing` }
   label={ `Licenciamento de obras` }
   className={ cn('col-span-1',) }
   
@@ -270,7 +264,7 @@ iconName={ `CornerDownRight` }
 </IGRPCheckbox></div>)}
   { currentPhaseName === "financiamento" && (<div className={ cn('grid','grid-cols-1 ','md:grid-cols-1 ','lg:grid-cols-1 ',' gap-4',)}    >
 	<IGRPCheckbox
-  name={ `checkbox1` }
+  name={ `creditContracting` }
   label={ `Fase final da contratação do crédito` }
   className={ cn('col-span-1',) }
   
@@ -278,7 +272,7 @@ iconName={ `CornerDownRight` }
 >
 </IGRPCheckbox>
 <IGRPCheckbox
-  name={ `checkbox3` }
+  name={ `bankNegotiation` }
   label={ `Em negociação com o banco` }
   className={ cn('col-span-1',) }
   
@@ -286,7 +280,7 @@ iconName={ `CornerDownRight` }
 >
 </IGRPCheckbox>
 <IGRPCheckbox
-  name={ `checkbox2` }
+  name={ `fundingDecision` }
   label={ `Aguarda decisão de financiamento` }
   className={ cn('col-span-1',) }
   
@@ -295,7 +289,7 @@ iconName={ `CornerDownRight` }
 </IGRPCheckbox></div>)}
   { currentPhaseName === "funcionamento" && (<div className={ cn('grid','grid-cols-1 ','xs:grid-cols-1 ','md:grid-cols-1 ','lg:grid-cols-1 ',' gap-4',)}    >
 	<IGRPInputNumber
-  name={ `inputNumber4` }
+  name={ `investmentMade` }
   label={ `Investimento Efetuado` }
 max={ 9999999 }
 step={ 1 }
@@ -306,7 +300,7 @@ required={ false }
 >
 </IGRPInputNumber>
 <IGRPInputNumber
-  name={ `inputNumber3` }
+  name={ `businessVolume` }
   label={ `Volume de Negócio` }
 max={ 9999999 }
 step={ 1 }
@@ -317,7 +311,7 @@ required={ false }
 >
 </IGRPInputNumber>
 <IGRPInputNumber
-  name={ `inputNumber2` }
+  name={ `jobsPlanned` }
   label={ `Empregos Previsto` }
 max={ 9999999 }
 step={ 1 }
@@ -328,7 +322,7 @@ required={ false }
 >
 </IGRPInputNumber>
 <IGRPInputNumber
-  name={ `inputNumber1` }
+  name={ `jobsCreated` }
   label={ `Empregos Criados` }
 max={ 9999999 }
 step={ 1 }
@@ -339,7 +333,7 @@ required={ false }
 >
 </IGRPInputNumber>
 <IGRPCombobox
-  name={ `reinvestPlan` }
+  name={ `reinvestmentPlan` }
   label={ `Plano de Reinvestimento` }
 variant={ `single` }
 placeholder={ `Select an option...` }
@@ -350,11 +344,11 @@ iconName={ `CornerDownRight` }
   className={ cn('col-span-1',) }
   onChange={ (value) => {setCurrentReinVestPlan(value as string)
 } }
-  options={ selectreinvestPlanOptions }
+  options={ selectreinvestmentPlanOptions }
 >
 </IGRPCombobox>
 { currentReinVestPlan === "nao" && (<IGRPTextarea
-  name={ `inputTextarea1` }
+  name={ `reason` }
   label={ `Porquê?` }
 rows={ 3 }
 required={ false }
@@ -406,10 +400,20 @@ iconName={ `CornerDownRight` }
   options={ selecttermOptions }
 >
 </IGRPCombobox></div>)}</div>)}
+  <IGRPInputNumber
+  name={ `completionPercentage` }
+  label={ `Percentagem Concluido` }
+max={ 9999999 }
+step={ 1 }
+required={ false }
+  
+  
+>
+</IGRPInputNumber>
 </>
 </IGRPForm></>
   <IGRPModalDialogFooter
-  className={ cn('','block',) }
+  className={ cn('','','block',) }
   
   
 >

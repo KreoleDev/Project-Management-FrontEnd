@@ -194,7 +194,24 @@ export const sampleProjects: Project[] = [
       { name: 'Feasibility Study.pdf', description: 'Estudo de viabilidade.' },
       { name: 'Environmental Report.pdf', description: 'Relatório ambiental.' },
     ],
-    comments: ['Projeto em funcionamento estável.'],
+    situation: [
+      {
+        id: 's1',
+        title: 'Atualização de progresso',
+        description: 'Aguardamos o pronunciamento do Patrimonio de Estado que, por sua vez, aguarda a não objeção da CMSV - consta da listagem dos projectos a serem tratados diretamente com a DGPE e com o VPM',
+        createdAt: '2024-10-01T14:30:00Z',
+        status: 'Aberto',
+        statusDesc: 'Aberto',
+      },
+      {
+        id: 's2',
+        title: 'Aguardando Documentação',
+        description: 'Estamos aguardando a documentação necessária para prosseguir.',
+        createdAt: '2024-10-02T10:00:00Z',
+        status: 'Fechado',
+        statusDesc: 'Fechado',
+      },
+    ],
   },
 
   {
@@ -261,7 +278,24 @@ export const sampleProjects: Project[] = [
       { name: 'Projeto_Arquitetonico.pdf', description: 'Projeto detalhado.' },
       { name: 'Plano_de_Negocios.pdf', description: 'Plano de negócios.' },
     ],
-    comments: ['Hotel em fase final de construção.'],
+    situation: [
+      {
+        id: 's1',
+        title: 'Hotel em fase final de construção.',
+        description: 'Mantem-se a situação - Enviado E-mail ao novo Diretor Geral, no dia 11/07, insistindo na resolução do problema',
+        createdAt: '2024-10-01T14:30:00Z',
+        status: 'Fechado',
+        statusDesc: 'Fechado',
+      },
+      {
+        id: 's2',
+        title: 'Aguardando Documentação',
+        description: 'Estamos aguardando a documentação necessária para prosseguir.',
+        createdAt: '2024-10-02T10:00:00Z',
+        status: 'Fechado',
+        statusDesc: 'Fechado',
+      },
+    ],
   },
 
   {
@@ -331,7 +365,24 @@ export const sampleProjects: Project[] = [
       { name: 'Relatório de Viabilidade.pdf', description: 'Relatório técnico.' },
       { name: 'Relatório Ambiental.pdf', description: 'Relatório ambiental.' },
     ],
-    comments: ['Aguardando aprovação de financiamento.'],
+    situation: [
+      {
+        id: 's1',
+        title: 'Hotel em fase final de construção.',
+        description: 'Mantem-se a situação - Enviado E-mail ao novo Diretor Geral, no dia 11/07, insistindo na resolução do problema',
+        createdAt: '2024-10-01T14:30:00Z',
+        status: 'Aberto',
+        statusDesc: 'Aberto',
+      },
+      {
+        id: 's2',
+        title: 'Aguardando Documentação',
+        description: 'Estamos aguardando a documentação necessária para prosseguir.',
+        createdAt: '2024-10-02T10:00:00Z',
+        status: 'Aberto',
+        statusDesc: 'Aberto',
+      },
+    ],
   },
 ];
 
@@ -347,4 +398,17 @@ export function getStatusProject(project: any) {
           : 'bg-gray-100 text-gray-800';
 
   return { bgClass: color, label: project.statusDesc };
+}
+
+export function getStatusSituation(situation: any) {
+  const color =
+    situation.statusDesc === 'Aberto'
+      ? 'bg-green-100 text-green-800'
+      : situation.statusDesc === 'Fechado'
+        ? 'bg-blue-100 text-blue-800'
+        : situation.statusDesc === 'Nota'
+          ? 'bg-orange-100 text-orange-800'
+          : 'bg-gray-100 text-gray-800';
+
+  return { bgClass: color, label: situation.statusDesc };
 }

@@ -227,7 +227,7 @@ iconPlacement={ `start` }
 >
   { reinvestmentPlan }
 </IGRPBadge></div>
-{ reinvestmentDesc === "sim" && (<div className={ cn()}    >
+{ reinvestmentPlan === "sim" && (<div className={ cn()}    >
 	<div className={ cn('flex','flex flex-row flex-nowrap items-center justify-between gap-2',)}    >
 	<IGRPText
   name={ `text12` }
@@ -315,7 +315,7 @@ iconPlacement={ `start` }
 >
   { term }
 </IGRPBadge></div></div>)}
-{ reinvestmentDesc == "nao" && (<div className={ cn()}    >
+{ reinvestmentPlan == "nao" && (<div className={ cn()}    >
 	<IGRPText
   name={ `text17` }
   variant={ `secondary` }

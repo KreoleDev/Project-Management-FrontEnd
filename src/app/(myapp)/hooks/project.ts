@@ -13,6 +13,7 @@ import {
   inWork,
   reinvestmentPlan,
   term,
+  situationStatus,
 } from '../functions/configuration';
 
 export const useProject = ({
@@ -61,7 +62,7 @@ export const useProjectConfiguration = () => {
   const inWorkOptions = inWork();
   const reinvestmentPlanOptions = reinvestmentPlan();
   const termOptions = term();
-
+  const situationStatusOptions = situationStatus();
   return {
     projectStatusOptions,
     capitalOriginOptions,
@@ -74,5 +75,6 @@ export const useProjectConfiguration = () => {
     inWorkOptions,
     reinvestmentPlanOptions,
     termOptions,
+    situationStatusOptions,
   };
 };

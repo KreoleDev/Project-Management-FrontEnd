@@ -29,12 +29,21 @@ export interface Project {
   createdAt: string;
   phases?: ProjectPhase[];
   documents?: Documents[];
-  comments?: string[];
+  situation?: Situation[];
 }
 
 export interface Documents{
     name: string;
     description?: string;
+}
+
+export interface Situation {
+    id: string;
+    title: string;
+    description: string;
+    createdAt: string;
+    status: string;
+    statusDesc: string;
 }
 
 

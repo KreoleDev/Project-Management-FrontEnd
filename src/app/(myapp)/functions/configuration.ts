@@ -18,18 +18,26 @@ export function phaseName() {
 
 export function term() {
   return [
-    { value: "curto", label: "Curto Prazo" },
-    { value: "medio", label: "Médio Prazo" },
-    { value: "longo", label: "Longo Prazo" },
+    { value: "Curto Prazo", label: "Curto Prazo" },
+    { value: "Médio Prazo", label: "Médio Prazo" },
+    { value: "Longo Prazo", label: "Longo Prazo" },
+  ];
+}
+
+export function situationStatus() {
+  return [
+    { value: "Aberto", label: "Aberto" },
+    { value: "Fechado", label: "Fechado" },
+    { value: "Nota", label: "Nota" },
   ];
 }
 
 export function inWork() {
   return [
-    { value: "1-30", label: "1-30%" },
-    { value: "31-70", label: "31-70%" },
-    { value: "71-99", label: "71-99%" },
-    { value: "100", label: "100%" },
+    { value: "1-30%", label: "1-30%" },
+    { value: "31-70%", label: "31-70%" },
+    { value: "71-99%", label: "71-99%" },
+    { value: "100%", label: "100%" },
   ];
 }
 
@@ -61,6 +69,7 @@ export function sector() {
     { value: "Indústria", label: "Indústria" },
     { value: "SAÚDE", label: "SAÚDE" },
     { value: "PESCAS", label: "PESCAS" },
+    { value: "Serviços", label: "Serviços" },
   ];
 }
 

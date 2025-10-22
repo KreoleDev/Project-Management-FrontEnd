@@ -16,6 +16,7 @@ import ImplementationIndicator from '@/app/(igrp)/(generated)/project/components
 import FunctioningIndicator from '@/app/(igrp)/(generated)/project/components/functioningindicator'
 import StatusChange from '@/app/(igrp)/(generated)/project/components/statuschange'
 import PhaseCard from '@/app/(igrp)/(generated)/project/components/phasecard'
+import SituationCard from '@/app/(igrp)/(generated)/project/components/situationcard'
 import { 
   IGRPPageHeader,
 	IGRPButton,
@@ -29,7 +30,8 @@ import {
 	IGRPCardContent,
 	IGRPCardFooter,
 	IGRPRepetitiveComponent,
-	IGRPIcon 
+	IGRPIcon,
+	IGRPSeparator 
 } from "@igrp/igrp-framework-react-design-system";
 import {useDetailProject} from '@/app/(myapp)/hooks/project'
 import { useRouter } from "next/navigation";
@@ -39,9 +41,14 @@ export default function PageProjectdetailComponent({ params } : { params: Promis
 
   const { uuid } = use(params);
 
+  
+  type RepetitiveSituation = {
+}
+
   const [tabstabs1Items, setTabstabs1Items] = useState<IGRPTabItem[]>([]);
   const [repetitiveListrepetitiveList2, setRepetitiveListrepetitiveList2] = useState<any[]>([]);
   const [repetitiveListrepetitiveList1, setRepetitiveListrepetitiveList1] = useState<any[]>([]);
+  const [repetitiveListrepetitiveList3, setRepetitiveListrepetitiveList3] = useState<RepetitiveSituation[]>([]);
   
   
 const [promotingCompany, setPromotingCompany] = useState<string>(undefined);
@@ -128,6 +135,14 @@ const [openPhaseModal, setOpenPhaseModal] = useState<boolean>(undefined);
 
 const [phaseCurrentData, setPhaseCurrentData] = useState<any>(undefined);
 
+const [title, setTitle] = useState<string>(undefined);
+
+const [description, setDescription] = useState<string>(undefined);
+
+const [openSituationModal, setOpenSituationModal] = useState<boolean>(undefined);
+
+const [currentStituation, setCurrentStituation] = useState<any>(undefined);
+
 const { igrpToast } = useIGRPToast()
 
 const router = useRouter()
@@ -175,6 +190,8 @@ useEffect(() => {
   setUpdatedAt(data.updatedAt)
 
   
+
+  
   /*setPhaseName(data.phases.phaseName)
   setPhaseOrder(data.phases.phaseOrder)
   setCompletionPercentage(data.phases.completionPercentage)
@@ -187,6 +204,7 @@ useEffect(() => {
   //setComments(data.comments)
   setRepetitiveListrepetitiveList1(data.documents || [])
   setRepetitiveListrepetitiveList2(data.phases || [])
+  setRepetitiveListrepetitiveList3(data.situation || [])
 
 
 
@@ -999,6 +1017,7 @@ content: (<>
   
 >
   <IGRPCardHeader
+  className={ cn() }
   
 >
   <IGRPHeadline
@@ -1015,6 +1034,7 @@ showIcon={ false }
 </IGRPHeadline>
 </IGRPCardHeader>
   <IGRPCardContent
+  className={ cn('space-x-3','space-y-3',) }
   
 >
   <IGRPRepetitiveComponent<any>
@@ -1080,6 +1100,7 @@ iconName={ `FileText` }
 
 </IGRPCardContent>
   <IGRPCardFooter
+  className={ cn() }
   
 >
 </IGRPCardFooter>
@@ -1088,9 +1109,143 @@ iconName={ `FileText` }
         },
         {
           value: `tabsItem4-Wm1w`,
-          label: `Histórico`,
+          label: `Ponto de Situação`,
           icon: `ArrowRight`,
 content: (<>
+            <IGRPCard
+  name={ `card7` }
+  
+  
+  
+>
+  <IGRPCardHeader
+  
+>
+  <IGRPHeadline
+  name={ `headline6` }
+  title={ `Ponto de Situação` }
+description={ undefined }
+variant={ `h6` }
+roleColor={ `solid` }
+color={ `secondary` }
+showIcon={ false }
+  
+  
+>
+</IGRPHeadline>
+</IGRPCardHeader>
+  <IGRPCardContent
+  
+>
+  <IGRPRepetitiveComponent<RepetitiveSituation>
+  keyExtractor={ (item) => item.id }
+  items={ repetitiveListrepetitiveList3 }
+>
+{ (item) =>
+  <>
+  <div className={ cn('flex','flex flex-row flex-nowrap items-start justify-between gap-2',)}    >
+	<div className={ cn()}    >
+	<div className={ cn('flex','flex flex-row flex-nowrap items-center justify-between gap-2',)}    >
+	<IGRPText
+  name={ `text38` }
+  variant={ `primary` }
+weight={ `semibold` }
+size={ `lg` }
+align={ `left` }
+spacing={ `none` }
+maxLines={ 3 }
+  className={ cn() }
+  
+  
+>
+  { item.title }
+</IGRPText>
+<IGRPBadge
+  name={ `badge4` }
+  color={ `primary` }
+variant={ `solid` }
+size={ `md` }
+showIcon={ false }
+iconName={ `Info` }
+iconPlacement={ `start` }
+  badgeClassName={ cn() }
+  
+  
+>
+  { item.statusDesc }
+</IGRPBadge></div></div>
+<div className={ cn('flex flex-row flex-nowrap items-center justify-end gap-2',)}    >
+	<IGRPButton
+  name={ `button8` }
+  variant={ `ghost` }
+size={ `default` }
+showIcon={ true }
+iconName={ `SquarePen` }
+  className={ cn() }
+  onClick={ () => {setOpenSituationModal(!openSituationModal); setCurrentStituation(item)
+
+} }
+  
+>
+</IGRPButton>
+<IGRPButton
+  name={ `button7` }
+  variant={ `destructive` }
+size={ `sm` }
+showIcon={ true }
+iconName={ `Trash2` }
+  className={ cn() }
+  onClick={ () => {} }
+  
+>
+</IGRPButton></div></div>
+  <div className={ cn('block',)}    >
+	<IGRPText
+  name={ `text39` }
+  variant={ `primary` }
+weight={ `light` }
+size={ `sm` }
+align={ `left` }
+spacing={ `normal` }
+maxLines={ 3 }
+  className={ cn() }
+  
+  
+>
+  { item.description }
+</IGRPText>
+<IGRPText
+  name={ `text40` }
+  variant={ `primary` }
+weight={ `light` }
+size={ `sm` }
+align={ `left` }
+spacing={ `normal` }
+maxLines={ 3 }
+  className={ cn() }
+  
+  
+>
+  { item.createdAt }
+</IGRPText></div>
+</>
+}
+</IGRPRepetitiveComponent>
+
+  <IGRPSeparator
+  name={ `separator1` }
+  orientation={ `horizontal` }
+  className={ cn('my-4',) }
+  
+  
+>
+</IGRPSeparator>
+</IGRPCardContent>
+  <IGRPCardFooter
+  
+>
+</IGRPCardFooter>
+</IGRPCard>
 </>),
         },
 ]
@@ -1099,6 +1254,8 @@ content: (<>
 <StatusChange  openModal={ openStatusModal } initialStatus={ status } initialData={ currentData }  setOpen={ setOpenStatusModal
  } ></StatusChange>
 <PhaseCard  openModal={ openPhaseModal } initialData={ phaseCurrentData } sector={ sector }  setOpen={ setOpenPhaseModal
- } ></PhaseCard></div>
+ } ></PhaseCard>
+<SituationCard  open={ openSituationModal } initialData={ currentStituation }  setOpen={ setOpenSituationModal
+ } ></SituationCard></div>
   );
 }
