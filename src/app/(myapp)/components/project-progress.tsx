@@ -10,6 +10,10 @@ export function ProjectProgress({ label, value }: ProjectProgressProps) {
   // Make sure value is always a number
   const numericValue = Number(value) || 0;
 
+  const onChange = (event: React.FormEvent<HTMLDivElement>) => {
+    console.log(event);
+  };
+
   return (
     <div style={{ width: "100%" }}>
       <div
@@ -24,7 +28,7 @@ export function ProjectProgress({ label, value }: ProjectProgressProps) {
           {numericValue.toFixed(0)}%
         </span>
       </div>
-      <Progress value={numericValue} />
+      <Progress value={numericValue} onChange={onChange}/>
     </div>
   );
 }

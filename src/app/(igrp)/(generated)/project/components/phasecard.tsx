@@ -11,6 +11,7 @@ import { cn, useIGRPMenuNavigation, useIGRPToast } from '@igrp/igrp-framework-re
 import { IGRPFormHandle } from "@igrp/igrp-framework-react-design-system";
 import { z } from "zod"
 import { IGRPOptionsProps } from "@igrp/igrp-framework-react-design-system";
+import {ProjectSlider} from '@/app/(myapp)/components/project-slider'
 import { 
   IGRPModalDialog,
 	IGRPModalDialogContent,
@@ -400,16 +401,7 @@ iconName={ `CornerDownRight` }
   options={ selecttermOptions }
 >
 </IGRPCombobox></div>)}</div>)}
-  <IGRPInputNumber
-  name={ `completionPercentage` }
-  label={ `Percentagem Concluido` }
-max={ 9999999 }
-step={ 1 }
-required={ false }
-  
-  
->
-</IGRPInputNumber>
+  <ProjectSlider    ></ProjectSlider>
 </>
 </IGRPForm></>
   <IGRPModalDialogFooter

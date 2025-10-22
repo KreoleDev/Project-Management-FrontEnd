@@ -48,5 +48,5 @@ export default {
     'functions/project',
     'hooks/project'
   ],
-  components: ['components/InteractiveMap','components/MapLocations','components/project-progress', 'components/ExcelUploadModal', 'components/details-report']
+  components: ['components/project-slider','components/InteractiveMap','components/MapLocations','components/project-progress', 'components/ExcelUploadModal', 'components/details-report']
 };
