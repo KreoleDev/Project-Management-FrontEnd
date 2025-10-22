@@ -17,13 +17,11 @@ import {
 	IGRPModalDialogHeader,
 	IGRPModalDialogTitle,
 	IGRPForm,
-	IGRPTabs,
-	IGRPTabItem,
 	IGRPCombobox,
 	IGRPInputNumber,
-	IGRPTextarea,
 	IGRPText,
 	IGRPCheckbox,
+	IGRPTextarea,
 	IGRPModalDialogFooter,
 	IGRPButton 
 } from "@igrp/igrp-framework-react-design-system";
@@ -32,24 +30,24 @@ import {useProjectConfiguration} from '@/app/(myapp)/hooks/project'
 export default function Phasecard({ openModal, initialData, setOpen, sector } : { openModal: boolean, initialData: any, setOpen: () => void, sector: string }) {
 
   
-  const form1 = z.object({
+  const form2 = z.object({
     phaseName: z.string().optional(),
-    phaseOrder: z.number().optional(),
-    completionPercentage: z.number().optional(),
+    phaseOrder: z.string().optional(),
+    completionPercentage: z.string().optional(),
     requirements: z.string().optional(),
-    checkbox1: z.string().optional(),
-    checkbox3: z.string().optional(),
-    checkbox2: z.string().optional(),
-    checkbox5: z.string().optional(),
-    checkbox4: z.string().optional(),
-    checkbox6: z.string().optional(),
     inWork: z.string().optional(),
-    checkbox7: z.string().optional(),
+    checkbox7: z.boolean().optional(),
     checkbox8: z.string().optional(),
-    inputNumber4: z.string().optional(),
-    inputNumber3: z.string().optional(),
-    inputNumber2: z.string().optional(),
-    inputNumber1: z.string().optional(),
+    checkbox5: z.boolean().optional(),
+    checkbox4: z.boolean().optional(),
+    checkbox6: z.boolean().optional(),
+    checkbox1: z.boolean().optional(),
+    checkbox3: z.boolean().optional(),
+    checkbox2: z.boolean().optional(),
+    inputNumber4: z.number().optional(),
+    inputNumber3: z.number().optional(),
+    inputNumber2: z.number().optional(),
+    inputNumber1: z.number().optional(),
     reinvestPlan: z.string().optional(),
     inputTextarea1: z.string().optional(),
     sector: z.string().optional(),
@@ -57,22 +55,22 @@ export default function Phasecard({ openModal, initialData, setOpen, sector } : 
     term: z.string().optional()
 })
 
-type Form1ZodType = typeof form1;
+type Form2ZodType = typeof form2;
 
-const initForm1: z.infer<Form1ZodType> = {
+const initForm2: z.infer<Form2ZodType> = {
     phaseName: undefined,
     phaseOrder: undefined,
     completionPercentage: undefined,
     requirements: undefined,
-    checkbox1: undefined,
-    checkbox3: undefined,
-    checkbox2: undefined,
-    checkbox5: undefined,
-    checkbox4: undefined,
-    checkbox6: undefined,
     inWork: undefined,
     checkbox7: undefined,
     checkbox8: undefined,
+    checkbox5: undefined,
+    checkbox4: undefined,
+    checkbox6: undefined,
+    checkbox1: undefined,
+    checkbox3: undefined,
+    checkbox2: undefined,
     inputNumber4: undefined,
     inputNumber3: undefined,
     inputNumber2: undefined,
@@ -85,9 +83,8 @@ const initForm1: z.infer<Form1ZodType> = {
 }
 
 
-  const formform1Ref = useRef<IGRPFormHandle<Form1ZodType> | null>(null);
-  const [form1Data, setForm1Data] = useState<any>(initForm1);
-  const [tabstabs1Items, setTabstabs1Items] = useState<IGRPTabItem[]>([]);
+  const formform2Ref = useRef<IGRPFormHandle<Form2ZodType> | null>(null);
+  const [form2Data, setForm2Data] = useState<any>(initForm2);
   const [selectphaseNameOptions, setSelectphaseNameOptions] = useState<IGRPOptionsProps[]>([]);
   const [selectinWorkOptions, setSelectinWorkOptions] = useState<IGRPOptionsProps[]>([]);
   const [selectreinvestPlanOptions, setSelectreinvestPlanOptions] = useState<IGRPOptionsProps[]>([]);
@@ -149,25 +146,14 @@ useEffect(() => {
 </IGRPModalDialogHeader>
   <     >
 	<IGRPForm
-  schema={ form1 }
+  schema={ form2 }
   validationMode={ `onBlur` }
-formRef={ formform1Ref }
+formRef={ formform2Ref }
   onSubmit={ (e) => {} }
-  defaultValues={ form1Data }
+  defaultValues={ form2Data }
 >
   <>
-  <IGRPTabs
-  variant={ `default` }
-  iconPlacement={ `start` }
-  tabListClassName={ cn('w-full',) }
-  items={
-    [
-        {
-          value: `tabsItem1-jXjM`,
-          label: `Informações Básicas`,
-          icon: `ArrowRight`,
-content: (<>
-            <div className={ cn('grid','grid-cols-1 ','md:grid-cols-1 ','lg:grid-cols-1 ',' gap-4',)}    >
+  <div className={ cn('grid','grid-cols-1 ','md:grid-cols-1 ','lg:grid-cols-1 ',' gap-4',)}    >
 	<IGRPCombobox
   name={ `phaseName` }
   label={ `Nome da Fase` }
@@ -184,17 +170,6 @@ iconName={ `CornerDownRight` }
 >
 </IGRPCombobox>
 <IGRPInputNumber
-  name={ `phaseOrder` }
-  label={ `Ordem da Fase` }
-max={ 9999999 }
-step={ 1 }
-required={ false }
-  className={ cn('col-span-1',) }
-  
-  
->
-</IGRPInputNumber>
-<IGRPInputNumber
   name={ `completionPercentage` }
   label={ `Percentagem Concluido` }
 max={ 9999999 }
@@ -204,33 +179,16 @@ required={ false }
   
   
 >
-</IGRPInputNumber>
-<IGRPTextarea
-  name={ `requirements` }
-  label={ `Requisitos` }
-rows={ 3 }
-required={ false }
-  className={ cn('col-span-1',) }
-  
-  
->
-</IGRPTextarea></div>
-</>),
-        },
-        {
-          value: `tabsItem2-phEc`,
-          label: `Indicadores Detalhados`,
-          icon: `ArrowRight`,
-content: (<>
-            { currentPhaseName && currentPhaseName != null && currentPhaseName != ""
+</IGRPInputNumber></div>
+  { currentPhaseName && currentPhaseName != null && currentPhaseName != ""
  && (<div className={ cn('flex',)}    >
 	<IGRPText
   name={ `text1` }
   variant={ `primary` }
-weight={ `normal` }
+weight={ `semibold` }
 size={ `default` }
 align={ `left` }
-spacing={ `normal` }
+spacing={ `none` }
 maxLines={ 3 }
   className={ cn('','block','mr-1',) }
   
@@ -241,10 +199,10 @@ maxLines={ 3 }
 <IGRPText
   name={ `text2` }
   variant={ `primary` }
-weight={ `normal` }
+weight={ `semibold` }
 size={ `default` }
 align={ `left` }
-spacing={ `normal` }
+spacing={ `none` }
 maxLines={ 3 }
   className={ cn() }
   
@@ -252,57 +210,7 @@ maxLines={ 3 }
 >
   { currentPhaseName }
 </IGRPText></div>)}
-            { currentPhaseName === "financiamento" && (<div className={ cn('grid','grid-cols-1 ','md:grid-cols-1 ','lg:grid-cols-1 ',' gap-4',)}    >
-	<IGRPCheckbox
-  name={ `checkbox1` }
-  label={ `Fase final da contratação do crédito` }
-  className={ cn('col-span-1',) }
-  
-  
->
-</IGRPCheckbox>
-<IGRPCheckbox
-  name={ `checkbox3` }
-  label={ `Em negociação com o banco` }
-  className={ cn('col-span-1',) }
-  
-  
->
-</IGRPCheckbox>
-<IGRPCheckbox
-  name={ `checkbox2` }
-  label={ `Aguarda decisão de financiamento` }
-  className={ cn('col-span-1',) }
-  
-  
->
-</IGRPCheckbox></div>)}
-            { currentPhaseName === "desenvolvimento" && (<div className={ cn('grid','grid-cols-1 ','xs:grid-cols-1 ','md:grid-cols-1 ','lg:grid-cols-1 ',' gap-4',)}    >
-	<IGRPCheckbox
-  name={ `checkbox5` }
-  label={ `Elaboração de projetos de especialidades` }
-  className={ cn('col-span-1',) }
-  
-  
->
-</IGRPCheckbox>
-<IGRPCheckbox
-  name={ `checkbox4` }
-  label={ `Aprovação de projetos` }
-  className={ cn('col-span-1',) }
-  
-  
->
-</IGRPCheckbox>
-<IGRPCheckbox
-  name={ `checkbox6` }
-  label={ `Licenciamento de obras` }
-  className={ cn('col-span-1',) }
-  
-  
->
-</IGRPCheckbox></div>)}
-            { currentPhaseName == "implementacao" && (<div className={ cn()}    >
+  { currentPhaseName == "implementacao" && (<div className={ cn()}    >
 	{ sector !== "Serviços" && (<div className={ cn('grid','grid-cols-1 ','md:grid-cols-2 ','lg:grid-cols-4 ',' gap-4',)}    >
 	<IGRPCombobox
   name={ `inWork` }
@@ -335,7 +243,57 @@ iconName={ `CornerDownRight` }
   
 >
 </IGRPCheckbox></div></div>)}
-            { currentPhaseName === "funcionamento" && (<div className={ cn('grid','grid-cols-1 ','xs:grid-cols-1 ','md:grid-cols-1 ','lg:grid-cols-1 ',' gap-4',)}    >
+  { currentPhaseName === "desenvolvimento" && (<div className={ cn('grid','grid-cols-1 ','xs:grid-cols-1 ','md:grid-cols-1 ','lg:grid-cols-1 ',' gap-4',)}    >
+	<IGRPCheckbox
+  name={ `checkbox5` }
+  label={ `Elaboração de projetos de especialidades` }
+  className={ cn('col-span-1',) }
+  
+  
+>
+</IGRPCheckbox>
+<IGRPCheckbox
+  name={ `checkbox4` }
+  label={ `Aprovação de projetos` }
+  className={ cn('col-span-1',) }
+  
+  
+>
+</IGRPCheckbox>
+<IGRPCheckbox
+  name={ `checkbox6` }
+  label={ `Licenciamento de obras` }
+  className={ cn('col-span-1',) }
+  
+  
+>
+</IGRPCheckbox></div>)}
+  { currentPhaseName === "financiamento" && (<div className={ cn('grid','grid-cols-1 ','md:grid-cols-1 ','lg:grid-cols-1 ',' gap-4',)}    >
+	<IGRPCheckbox
+  name={ `checkbox1` }
+  label={ `Fase final da contratação do crédito` }
+  className={ cn('col-span-1',) }
+  
+  
+>
+</IGRPCheckbox>
+<IGRPCheckbox
+  name={ `checkbox3` }
+  label={ `Em negociação com o banco` }
+  className={ cn('col-span-1',) }
+  
+  
+>
+</IGRPCheckbox>
+<IGRPCheckbox
+  name={ `checkbox2` }
+  label={ `Aguarda decisão de financiamento` }
+  className={ cn('col-span-1',) }
+  
+  
+>
+</IGRPCheckbox></div>)}
+  { currentPhaseName === "funcionamento" && (<div className={ cn('grid','grid-cols-1 ','xs:grid-cols-1 ','md:grid-cols-1 ','lg:grid-cols-1 ',' gap-4',)}    >
 	<IGRPInputNumber
   name={ `inputNumber4` }
   label={ `Investimento Efetuado` }
@@ -448,11 +406,6 @@ iconName={ `CornerDownRight` }
   options={ selecttermOptions }
 >
 </IGRPCombobox></div>)}</div>)}
-</>),
-        },
-]
-  }
-/>
 </>
 </IGRPForm></>
   <IGRPModalDialogFooter
