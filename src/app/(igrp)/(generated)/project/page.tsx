@@ -22,7 +22,9 @@ import {
 	IGRPDataTableCellAmount,
 	IGRPDataTableCellBadge,
 	IGRPDataTableRowAction,
-	IGRPDataTableButtonLink 
+	IGRPDataTableButtonLink,
+	IGRPDataTableDropdownMenu,
+	IGRPDataTableDropdownMenuCustom 
 } from "@igrp/igrp-framework-react-design-system";
 import {useProject} from '@/app/(myapp)/hooks/project'
 import { useRouter } from "next/navigation"
@@ -365,6 +367,25 @@ return (
   action={ () => {} }
 >
 </IGRPDataTableButtonLink>
+  <IGRPDataTableDropdownMenu
+  items={
+    [
+      {
+        component: IGRPDataTableDropdownMenuCustom,
+        props: {
+          labelTrigger: `Registar Problemas`,          showIcon: true,          action: (e) => {},
+}
+      },
+      {
+        component: IGRPDataTableDropdownMenuCustom,
+        props: {
+          labelTrigger: `Custom`,          showIcon: true,          action: (e) => {},
+}
+      },
+]
+  }
+>
+</IGRPDataTableDropdownMenu>
 </IGRPDataTableRowAction>
 );
           },
