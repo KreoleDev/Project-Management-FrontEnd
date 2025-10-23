@@ -401,7 +401,7 @@ iconName={ `CornerDownRight` }
   options={ selecttermOptions }
 >
 </IGRPCombobox></div>)}</div>)}
-  <ProjectSlider    ></ProjectSlider>
+  <ProjectSlider  value={ undefined } onValueChange={ undefined }   ></ProjectSlider>
 </>
 </IGRPForm></>
   <IGRPModalDialogFooter

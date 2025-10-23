@@ -1121,7 +1121,8 @@ content: (<>
   <IGRPCardHeader
   
 >
-  <IGRPHeadline
+  <div className={ cn('flex','flex flex-row flex-nowrap items-center justify-between gap-2',)}    >
+	<IGRPHeadline
   name={ `headline6` }
   title={ `Ponto de Situação` }
 description={ undefined }
@@ -1129,10 +1130,24 @@ variant={ `h6` }
 roleColor={ `solid` }
 color={ `secondary` }
 showIcon={ false }
+  className={ cn() }
   
   
 >
 </IGRPHeadline>
+<IGRPButton
+  name={ `button9` }
+  variant={ `outline` }
+size={ `sm` }
+showIcon={ true }
+iconName={ `Plus` }
+  className={ cn() }
+  onClick={ () => {setOpenSituationModal(!openSituationModal)
+} }
+  
+>
+  Novo Registro
+</IGRPButton></div>
 </IGRPCardHeader>
   <IGRPCardContent
   

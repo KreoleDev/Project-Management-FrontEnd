@@ -13,6 +13,8 @@ import { IGRPOptionsProps } from "@igrp/igrp-framework-react-design-system";
 import { IGRPDataTableFacetedFilterFn , IGRPDataTableDateRangeFilterFn } from "@igrp/igrp-framework-react-design-system";
 import { IGRPDataTableHeaderSortToggle, IGRPDataTableHeaderSortDropdown, IGRPDataTableHeaderRowsSelect } from "@igrp/igrp-framework-react-design-system";
 import {ExcelUploadModal} from '@/app/(myapp)/components/ExcelUploadModal'
+import PhaseCard from '@/app/(igrp)/(generated)/project/components/phasecard'
+import SituationCard from '@/app/(igrp)/(generated)/project/components/situationcard'
 import { 
   IGRPPageHeader,
 	IGRPButton,
@@ -59,6 +61,12 @@ export default function PageProjectComponent() {
 const [showFIlters, setShowFIlters] = useState<boolean>(false);
 
 const [showExcelUpload, setShowExcelUpload] = useState<boolean>(false);
+
+const [openSituationModal, setOpenSituationModal] = useState<boolean>(undefined);
+
+const [openPhaseModal, setOpenPhaseModal] = useState<boolean>(undefined);
+
+const [currentSectorRow, setCurrentSectorRow] = useState<string>(undefined);
 
 const { igrpToast } = useIGRPToast()
 
@@ -373,13 +381,17 @@ return (
       {
         component: IGRPDataTableDropdownMenuCustom,
         props: {
-          labelTrigger: `Registar Problemas`,          showIcon: true,          action: (e) => {},
+          labelTrigger: `Registar Problemas`,          showIcon: true,          action: (e) => {setOpenSituationModal(!openSituationModal)
+},
 }
       },
       {
         component: IGRPDataTableDropdownMenuCustom,
         props: {
-          labelTrigger: `Custom`,          showIcon: true,          action: (e) => {},
+          labelTrigger: `Nova Fase`,          showIcon: true,          action: () => {setOpenPhaseModal(!openPhaseModal)
+    setCurrentSectorRow(rowData.sector)
+
+},
 }
       },
 ]
@@ -401,6 +413,10 @@ return (
   data={ contentTabletable1 }
 />
 <ExcelUploadModal  title={ `Upload Projects Excel File` } description={ `Upload an Excel file containing project data. The file should include columns for project name, description, status, etc.` } isOpen={ showExcelUpload }  onClose={ () => setShowExcelUpload(false) }
-onUploadSuccess={ handleExcelUpload } ></ExcelUploadModal></div></div>
+onUploadSuccess={ handleExcelUpload } ></ExcelUploadModal>
+<PhaseCard  openModal={ openPhaseModal } sector={ currentSectorRow }  setOpen={ setOpenPhaseModal
+ } ></PhaseCard>
+<SituationCard  open={ openSituationModal }  setOpen={ setOpenSituationModal
+ } ></SituationCard></div></div>
   );
 }
